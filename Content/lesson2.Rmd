@@ -10,6 +10,25 @@ datasetsDir=file.path(PROJHOME,"datasets")
 
 # Lesson 2
 
+## Random Variables and Vectors
+
+### Elements of probability
+
+A random variable $\bold{X}$ is a function that takes an event space and return a value:
+
+$$ X: \Omega \rightarrow {\rm I\!R}$$
+
+The behavious of a random variable $X$ can be described by both probability function and distribution function:
+
+- Distribution Function: $F(x) = P(\text{x} \leq x) (x \in {\rm I\!R}; 0 \leq F(x) \leq 1 ) \text{F(x) is differentiable}$
+- For discrete variables, Probability Mass Function:
+- For continuous variables, Probability Density Function:
+
+
+
+### 
+
+
 ## Variance and Corrected Variance
 
 ### Variance 

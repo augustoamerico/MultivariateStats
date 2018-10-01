@@ -32,8 +32,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="exercises-1.html">
-
+<link rel="prev" href="studies-experiments.html">
+<link rel="next" href="exercise.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -108,13 +108,17 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
 <ul class="summary">
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Lesson 2</a><ul>
-<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#variance-and-corrected-variance"><i class="fa fa-check"></i><b>1.1</b> Variance and Corrected Variance</a><ul>
-<li class="chapter" data-level="1.1.1" data-path="index.html"><a href="index.html#variance"><i class="fa fa-check"></i><b>1.1.1</b> Variance</a></li>
-<li class="chapter" data-level="1.1.2" data-path="index.html"><a href="index.html#corrected-variance"><i class="fa fa-check"></i><b>1.1.2</b> Corrected Variance</a></li>
-<li class="chapter" data-level="1.1.3" data-path="index.html"><a href="index.html#covariance"><i class="fa fa-check"></i><b>1.1.3</b> Covariance</a></li>
-<li class="chapter" data-level="1.1.4" data-path="index.html"><a href="index.html#pearson-correlation-coefficient"><i class="fa fa-check"></i><b>1.1.4</b> Pearson Correlation Coefficient</a></li>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#random-variables-and-vectors"><i class="fa fa-check"></i><b>1.1</b> Random Variables and Vectors</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="index.html"><a href="index.html#elements-of-probability"><i class="fa fa-check"></i><b>1.1.1</b> Elements of probability</a></li>
+<li class="chapter" data-level="1.1.2" data-path="index.html"><a href="index.html#section"><i class="fa fa-check"></i><b>1.1.2</b> </a></li>
 </ul></li>
-<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#exercises"><i class="fa fa-check"></i><b>1.2</b> Exercises</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#variance-and-corrected-variance"><i class="fa fa-check"></i><b>1.2</b> Variance and Corrected Variance</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="index.html"><a href="index.html#variance"><i class="fa fa-check"></i><b>1.2.1</b> Variance</a></li>
+<li class="chapter" data-level="1.2.2" data-path="index.html"><a href="index.html#corrected-variance"><i class="fa fa-check"></i><b>1.2.2</b> Corrected Variance</a></li>
+<li class="chapter" data-level="1.2.3" data-path="index.html"><a href="index.html#covariance"><i class="fa fa-check"></i><b>1.2.3</b> Covariance</a></li>
+<li class="chapter" data-level="1.2.4" data-path="index.html"><a href="index.html#pearson-correlation-coefficient"><i class="fa fa-check"></i><b>1.2.4</b> Pearson Correlation Coefficient</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#exercises"><i class="fa fa-check"></i><b>1.3</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="lesson-3.html"><a href="lesson-3.html"><i class="fa fa-check"></i><b>2</b> Lesson 3</a><ul>
 <li class="chapter" data-level="2.0.1" data-path="lesson-3.html"><a href="lesson-3.html#estatisticas-ordinais"><i class="fa fa-check"></i><b>2.0.1</b> Estatísticas Ordinais</a></li>
@@ -150,107 +154,18 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="exercise" class="section level1">
-<h1><span class="header-section-number">5</span> Exercise</h1>
-<div id="exercise-1---linear-algebra" class="section level2">
-<h2><span class="header-section-number">5.1</span> Exercise 1 - Linear Algebra</h2>
-<div id="ex-1" class="section level3">
-<h3><span class="header-section-number">5.1.1</span> Ex 1</h3>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">A =<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">4</span>,<span class="dv">7</span>,<span class="dv">2</span>,<span class="dv">5</span>,<span class="dv">3</span>,<span class="dv">8</span>),<span class="dv">2</span>)
-
-B =<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">3</span>,<span class="dv">6</span>,<span class="op">-</span><span class="dv">2</span>,<span class="dv">9</span>,<span class="dv">4</span>,<span class="op">-</span><span class="dv">5</span>),<span class="dv">2</span>)</code></pre></div>
-<ol style="list-style-type: lower-alpha">
-<li><span class="math display">\[ A + B = \]</span></li>
-</ol>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">A<span class="op">+</span>B </code></pre></div>
-<pre><code>##      [,1] [,2] [,3]
-## [1,]    7    0    7
-## [2,]   13   14    3</code></pre>
-<p><span class="math display">\[ A - B = \]</span></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">A<span class="op">-</span>B</code></pre></div>
-<pre><code>##      [,1] [,2] [,3]
-## [1,]    1    4   -1
-## [2,]    1   -4   13</code></pre>
-<ol start="2" style="list-style-type: lower-alpha">
-<li><span class="math display">\[ A&#39; \times A = \]</span></li>
-</ol>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">t</span>(A)<span class="op">%*%</span>A</code></pre></div>
-<pre><code>##      [,1] [,2] [,3]
-## [1,]   65   43   68
-## [2,]   43   29   46
-## [3,]   68   46   73</code></pre>
-<p><span class="math display">\[ A \times A&#39; = \]</span></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">A<span class="op">%*%</span><span class="kw">t</span>(A)</code></pre></div>
-<pre><code>##      [,1] [,2]
-## [1,]   29   62
-## [2,]   62  138</code></pre>
-</div>
-<div id="ex-2" class="section level3">
-<h3><span class="header-section-number">5.1.2</span> Ex 2</h3>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">A =<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="op">-</span><span class="dv">1</span>),<span class="dv">2</span>)
-
-B =<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">5</span>),<span class="dv">2</span>)</code></pre></div>
-<ol style="list-style-type: lower-alpha">
-<li><span class="math display">\[ A \times B = \]</span></li>
-</ol>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">A <span class="op">%*%</span><span class="st"> </span>B </code></pre></div>
-<pre><code>##      [,1] [,2]
-## [1,]    5   15
-## [2,]    3   -5</code></pre>
-<p><span class="math display">\[ B \times A = \]</span></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">B <span class="op">%*%</span><span class="st"> </span>A</code></pre></div>
-<pre><code>##      [,1] [,2]
-## [1,]    2    6
-## [2,]   11   -2</code></pre>
-<ol start="2" style="list-style-type: lower-alpha">
-<li><span class="math display">\[ det(A \times B) = \]</span></li>
-</ol>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">det</span>(A <span class="op">%*%</span><span class="st"> </span>B )</code></pre></div>
-<pre><code>## [1] -70</code></pre>
-<p><span class="math display">\[ det(A) = \]</span></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">det</span>(A)</code></pre></div>
-<pre><code>## [1] -7</code></pre>
-<p><span class="math display">\[ det(B) = \]</span></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">det</span>(B)</code></pre></div>
-<pre><code>## [1] 10</code></pre>
-</div>
-<div id="ex-3" class="section level3">
-<h3><span class="header-section-number">5.1.3</span> Ex 3</h3>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">A =<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">5</span>,<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">10</span>,<span class="dv">3</span>,<span class="dv">6</span>,<span class="dv">15</span>),<span class="dv">3</span>)
-
-B =<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>,<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="op">-</span><span class="dv">1</span>,<span class="op">-</span><span class="dv">2</span>,<span class="op">-</span><span class="dv">2</span>,<span class="dv">2</span>),<span class="dv">3</span>)</code></pre></div>
-<ol style="list-style-type: lower-alpha">
-<li><span class="math display">\[ A \times B = 0 \]</span></li>
-</ol>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">A <span class="op">%*%</span><span class="st"> </span>B</code></pre></div>
-<pre><code>##      [,1] [,2] [,3]
-## [1,]    0    0    0
-## [2,]    0    0    0
-## [3,]    0    0    0</code></pre>
-<ol start="2" style="list-style-type: lower-alpha">
-<li><span class="math display">\[ tr(A)\]</span></li>
-</ol>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#tr(A)</span></code></pre></div>
-<p><span class="math display">\[ tr(B)\]</span></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#tr(B)</span></code></pre></div>
-<ol start="2" style="list-style-type: lower-alpha">
-<li><span class="math display">\[ det(A)\]</span></li>
-</ol>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">det</span>(A)</code></pre></div>
-<pre><code>## [1] 0</code></pre>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="dv">1</span><span class="op">+</span><span class="dv">1</span></code></pre></div>
-
-
-</div>
-</div>
+<div id="exercises-1" class="section level1">
+<h1><span class="header-section-number">4</span> Exercises</h1>
+<p>This is an <a href="http://rmarkdown.rstudio.com">R Markdown</a> Notebook. When you execute code within the notebook, the results appear beneath the code.</p>
+<p>Try executing this chunk by clicking the <em>Run</em> button within the chunk or by placing your cursor inside it and pressing <em>Cmd+Shift+Enter</em>.</p>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="exercises-1.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="studies-experiments.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="exercise.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

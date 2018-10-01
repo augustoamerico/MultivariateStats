@@ -1,0 +1,39 @@
+---
+title: "Computational Stats"
+site: bookdown::bookdown_site
+---
+
+```{r include = FALSE}
+datasetsDir=file.path(PROJHOME,"datasets")
+```
+
+
+# Lesson 1
+
+## Revisions on Linear Algebra
+
+### Normalized Vector
+
+### Linear Combination of Vectors
+
+### Matrix's Determinant
+
+### Inverse of a Matrix
+
+### Trace of a Matrix
+
+### Eigen Values and Vectors
+
+### Spectral Decomposition
+
+### Defined Positive Matrix
+
+A matrix is defined non negative if and only if its eigen values are all non-negatives.
+
+A matrix is defined positive if and only if its eigen values are all positives (greater than 0).
+
+### Inverse Matrix by Spectral Decomposition
+
+
+
+
