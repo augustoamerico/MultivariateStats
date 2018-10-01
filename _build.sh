@@ -6,4 +6,4 @@ sed -i -e 's/https:\/\/cdn.bootcss\.com\/mathjax\/2\.7\.1\/MathJax\.js\?config=T
 
 rm ./docs/*
 
-mv _book/* ./docs/
+mv _book docs/
