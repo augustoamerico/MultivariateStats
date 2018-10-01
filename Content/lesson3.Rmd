@@ -4,6 +4,7 @@ site: bookdown::bookdown_site
 ---
 
 ```{r include = FALSE}
+PROJHOME <- "/Users/tiago.correia/courses/MestradoBigData/EstatisticaMultivariada"
 datasetsDir=file.path(PROJHOME,"datasets")
 ```
 
@@ -52,8 +53,7 @@ dados1 <- as.data.frame(readxl::read_xlsx(file.path(datasetsDir, "data1.xlsx"), 
 
 par(mfrow=c(3,2))
 
-apply(dados1,2,function(iVar){
-  print(iVar)
+plots <- apply(dados1,2,function(iVar){
   s <- seq(min(iVar),max(iVar), length.out = length(iVar))
   hist(
     iVar, probability = T, xlim=c(min(iVar),max(iVar)), main=NULL, xlab=NULL) 
@@ -116,7 +116,7 @@ defaultMar <- c(5, 4, 4, 2) + 0.1
 
 par(mfrow=c(3,2),mar=c(0,0,0,0))
 
-apply(dados1,2,function(iVar){
+plots <- apply(dados1,2,function(iVar){
   car::qqp(iVar,distribution="norm")
 })
 par(mfrow=c(1,1),defaultMar)
@@ -133,7 +133,7 @@ x2 <- c(4224,3835,3510,3758,3939,1809,2946, 359,2480,2413)
 
 X <- matrix(c(x1,x2),10,2)
 
-mx <- colMeans(x)
+mx <- colMeans(X)
 S <- var(x)
 
 d2 <- c()
