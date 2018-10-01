@@ -1,0 +1,42 @@
+--- 
+title: "Multivariate Stats"
+author: "Tiago dos Santos"
+date: "`r Sys.Date()`"
+always_allow_html: yes
+site: bookdown::bookdown_site
+link-citations: yes
+description: "The captain's log of Multivariate Stats"
+biblatex: yes
+---
+```{r include = FALSE}
+options(tz="Europe/Lisbon")
+library(reticulate)
+library(pander)
+fig_basePath = "Figures/"
+```
+
+```{r child="Content/lesson2.Rmd"}
+```
+
+```{r child="Content/lesson3.Rmd"}
+```
+
+
+# Studies \& Experiments
+```{r child="Content/Study_2.Rmd"}
+```
+
+# Exercises
+```{r child="Content/Exer_1.Rmd"}
+```
+
+
+```{python}
+1+1
+```
+
+<!--chapter:end:index.Rmd-->
+
+
+<!--chapter:end:index.Rmd-->
+

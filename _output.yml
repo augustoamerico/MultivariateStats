@@ -1,0 +1,8 @@
+bookdown::gitbook:
+  css: style.css
+bookdown::pdf_book:
+  #includes:
+  #  in_header: preamble.tex
+  latex_engine: pdflatex
+  citation_package: biblatex
+bookdown::epub_book: default

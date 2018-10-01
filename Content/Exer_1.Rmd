@@ -1,0 +1,120 @@
+---
+title: "Computational Stats"
+site: bookdown::bookdown_site
+---
+
+This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
+
+Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Cmd+Shift+Enter*. 
+
+# Exercise
+
+## Exercise 1 - Linear Algebra
+
+### Ex 1
+
+```{r}
+
+A = matrix(c(4,7,2,5,3,8),2)
+
+B = matrix(c(3,6,-2,9,4,-5),2)
+
+```
+
+a) 
+$$ A + B = $$ 
+```{r}
+A+B 
+```
+
+$$ A - B = $$ 
+```{r} 
+A-B
+```
+
+
+b) 
+$$ A' \times A = $$ 
+```{r}
+t(A)%*%A
+```
+
+$$ A \times A' = $$ 
+```{r} 
+A%*%t(A)
+```
+
+
+### Ex 2
+
+```{r}
+
+A = matrix(c(1,2,3,-1),2)
+
+B = matrix(c(2,1,0,5),2)
+
+```
+
+
+a) 
+$$ A \times B = $$ 
+```{r}
+A %*% B 
+```
+
+$$ B \times A = $$ 
+```{r} 
+B %*% A
+```
+
+
+b) 
+$$ det(A \times B) = $$ 
+```{r}
+det(A %*% B )
+```
+
+$$ det(A) = $$ 
+```{r} 
+det(A)
+```
+
+$$ det(B) = $$ 
+```{r} 
+det(B)
+```
+
+### Ex 3
+
+```{r}
+
+A = matrix(c(1,2,5,2,4,10,3,6,15),3)
+
+B = matrix(c(-1,-1,1,1,1,-1,-2,-2,2),3)
+
+```
+
+a)
+$$ A \times B = 0 $$ 
+```{r} 
+A %*% B
+```
+
+b)
+$$ tr(A)$$ 
+```{r} 
+#tr(A)
+```
+
+$$ tr(B)$$ 
+```{r} 
+#tr(B)
+```
+
+
+b)
+$$ det(A)$$ 
+```{r} 
+det(A)
+```
+

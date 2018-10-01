@@ -1,0 +1,1 @@
+Please compile the project with the `_build.sh` file since there is a bug with the mathjax import in html output

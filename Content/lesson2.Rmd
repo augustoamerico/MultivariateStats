@@ -1,0 +1,83 @@
+---
+title: "Computational Stats"
+site: bookdown::bookdown_site
+---
+
+```{r include = FALSE}
+datasetsDir=file.path(PROJHOME,"datasets")
+```
+
+
+# Lesson 2
+
+## Variance and Corrected Variance
+
+### Variance 
+
+$$ S_{n}^2 = \frac{1}{N}\sum\limits_{i=1}^{N}(X_{i} -  \overline{X})^2 $$
+$$ S_{n}^2 = \frac{1}{N}\sum\limits_{i=1}^{N}(X_{i} -  \overline{X})(X_{i} -  \overline{X}) $$
+
+### Corrected Variance 
+
+$$ S_{n-1}^2 = \frac{1}{n}\sum\limits_{i=1}^{n-1}(X_{i} -  \overline{X})^2 $$
+
+$$ S_{n-1}^2 = \frac{1}{n}\sum\limits_{i=1}^{n-1}(X_{i} -  \overline{X})(X_{i} -  \overline{X}) $$
+
+
+### Covariance 
+
+$$Cov(x,y) = \frac{1}{n-1}\sum\limits_{i=1}^{n}(x_{i} -  \overline{x})(y_{i} -  \overline{y}) $$
+
+$$Cov(x,y) = Cov(y,x) $$
+
+### Pearson Correlation Coefficient
+
+$$r_{xy} = \frac{Cov(x,y)}{\sqrt{S_{x}^2 \times S_{y}^2}}$$
+
+The domain of this coefficient is [-1, 1] 
+
+
+$$ \Sigma = V^{\frac{1}{2}} $$
+
+
+
+
+## Exercises
+
+```{r}
+X = matrix(c(42,52,48,58,4,5,4,3),4)
+
+XMeans <- apply(X, 2, mean)
+
+XVars <- var(X)
+
+Xcor <- cor(X)
+
+
+```
+
+
+```{r}
+
+dados <- as.data.frame(readxl::read_xlsx(file.path(datasetsDir,"data1.xlsx")))
+
+aplpack::faces(HSAUR3::USairpollution[1:9,], print.info = F)
+
+```
+
+```{r}
+
+meanVector <- c(5,10)
+
+Sigma <- matrix(c(9,16,16,64),2)
+Sigma.eigen <- eigen(Sigma)
+
+```
+
+The eigen values are `r Sigma.eigen$values`
+
+TO obtain the ellipse containing 95\% of the population, we must calculate
+
+$$(x-\mu)' \times  \Sigma^{-1} \times (x-\mu)' <= \chi^2_{(2)0.95}$$
+
+

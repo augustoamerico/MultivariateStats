@@ -1,0 +1,249 @@
+---
+title: "Computational Stats"
+site: bookdown::bookdown_site
+---
+
+```{r include = FALSE}
+datasetsDir=file.path(PROJHOME,"datasets")
+```
+
+To use the lab computers, the access credentials are:
+
+> usr: em
+> pwd: Emult*2018
+
+# Lesson 1
+
+
+```{r}
+x <- 3+5
+
+ls()
+```
+
+## Start by creating a vector
+
+
+```{r}
+y <- c(2,5,9,8)
+
+y[1:3]
+
+y[c(1,3)]
+
+```
+
+#### Get the elements 1,2,3 from the vector
+
+```{r}
+y[1:3]
+```
+
+#### Get the elements 1,3 from the vector
+
+```{r}
+y[c(1,3)]
+```
+
+#### Get an array from 0 to 1, with a 0.001 step
+
+```{r}
+y <- 1:1000/1000
+y <- seq(0,1,0.001)
+```
+
+#### Which values are lower than 0.008?
+
+```{r}
+isValueLowerThan <- y < 0.008
+y[isValueLowerThan]
+
+idxs <- which(y<0.08)
+y[idxs]
+```
+
+#### Creating objects by repetition
+
+```{r}
+colors <- c("amarelo","verde","vermelho","azul")
+
+rep(colors, 5)
+print("===")
+rep(10,5)
+```
+
+## Now a Matrix!
+
+```{r}
+M <- matrix(1:9, ncol=3)
+M
+```
+
+Transposing the Matrix
+```{r}
+t(M)
+```
+
+Accessing the Matrix
+```{r}
+M[1,2]
+M[1,]
+M[,2]
+```
+
+Matrix Operation
+```{r}
+M2 <- t(M)
+
+M+M2 # valuewise add
+
+M*M2 # valuewise multiplication
+
+M%*%M2 # Matricial Multiplication
+
+```
+
+#### Joining Matrixes
+
+Matrix Operation
+```{r}
+
+cbind(M,M2)
+
+rbind(M,M2)
+
+```
+
+#### Inverting a matrix
+```{r}
+
+#solve(M) # M must not be singular 
+
+```
+
+## DataFrames
+
+```{r}
+
+y <- 1:10
+y2 <- 11:20
+y3 <- letters[1:10]
+
+d1 <- data.frame(y,y2,y3)
+
+d1
+```
+
+
+## Reading a Tab Separated File
+
+```{r}
+emp <- read.table(file.path(datasetsDir,"empresas.txt"), header=F)
+knitr::kable(head(emp))
+dim(emp)
+
+names(emp) <- c("nome","n.socios","c.social","vmm","n.emp")
+knitr::kable(head(emp))
+
+emp$n.socios
+emp[,2]
+```
+
+## Generating data
+
+```{r}
+set.seed(5)
+
+emp$ant <- round(rnorm(dim(emp)[1],10,1))
+```
+
+
+## Getting insights
+
+```{r}
+summary(emp)
+
+mean(emp$n.socios)
+
+sd(emp$n.socios)
+
+tapply(emp$vmm, emp$n.emp, mean) # vmm mean by number of employes
+tapply(emp$vmm, emp$n.emp, sd) # vmm sd by number of employes
+```
+
+$$ \overline{X} = \frac{1}{N}\sum\limits_{i=1}^{N}X_{i} $$
+
+\begin{equation} 
+    \label{eq:std}
+	S^2 = \frac{1}{N}\sum\limits_{i=1}^{N}(X_{i} - \overline{X})^2
+\end{equation}
+
+
+```{r}
+
+table(emp$n.emp) #first line are values, second line is frequency
+
+barplot(emp$n.emp) # each company is a bin in x label, y is the number of employees
+
+barplot(table(emp$n.emp), xlab="#Employees", ylab="Frequecy", col="pink")
+
+boxplot(emp$vmm,range=0,col="purple",horizontal=T,main="vmm")
+
+boxplot(emp$vmm ~ emp$n.emp,range=0,col="purple",horizontal=T,main="vmm")
+
+hist(emp$vmm)
+
+hist(emp$vmm, freq=F)
+lines(density(emp$vmm),col=2)
+
+
+par(mfrow=c(1,2))
+hist(emp$vmm)
+
+hist(emp$vmm, freq=F)
+lines(density(emp$vmm),col=2)
+par(mfrow=c(1,1))
+
+plot(emp$vmm,emp$n.socios,pch=16)
+
+plot(emp)
+```
+
+## Lists
+
+```{r}
+uma.lista <- list(
+  um.vector=1:10,
+  uma.palavra="olá",
+  uma.matrix=M,
+  outra.lista=list(
+    a="flor",
+    b=rep(3,5)
+  )
+)
+
+uma.lista["um.vector"]
+uma.lista$um.vector
+uma.lista[1]
+```
+
+## Functions
+
+```{r}
+
+desconto <- function(price, discount=25){
+  #Discount is a number between 0 and 100
+  #calcula o desconto de um preço
+  newPrice <- price*(1-discount/100)
+  discount <- price - newPrice
+  list(
+    novo.preco=newPrice,
+    desconto=discount)
+}
+
+desconto(1000,20)
+desconto(1000,25)
+
+```
+
+This is how you function
