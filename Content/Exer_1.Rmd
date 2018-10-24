@@ -285,8 +285,8 @@ dados13 <- as.data.frame(readxl::read_xlsx(file.path(datasetsDir,"..","Exercicio
 xs <- c(1,2,3)
 ys <- c(4,5)
 
-xsbar <- mean(colMeans(dados13[,xs]))
-ysbar <- mean(colMeans(dados13[,ys]))
+xsbar <-colMeans(dados13[,xs])
+ysbar <-colMeans(dados13[,ys])
 
 S <- var(dados13)
 S11 <- S[xs,xs]
@@ -344,5 +344,112 @@ S.det <- prod(S.eigen$values)
 S.tr <- sum(S.eigen$values)
 R.det <- det(R)
 
+```
+
+
+## 16
+
+```{r}
+
+dados16 <- as.data.frame(readxl::read_xlsx(file.path(datasetsDir,"..","Exercicios","exe16.xlsx"), col_names=F))
+
+dados16.xbar <- colMeans(dados16)
+dados16.S <- var(dados16)
+dados16.R <- cor(dados16)
+
+dados16.S.det <- det(dados16.S)
+dados16.S.tr <- sum(diag(dados16.S))
+
+
+#z=x1+2x2+x3−3x4
+a <- c(1,2,1,-3)
+z <- t(a*t(dados16))
+#w=−2x1+3x2−x3+2x4
+b <- c(-2,3,-1,2)
+w <- t(b*t(dados16))
+
+zbar <- a*dados16.xbar
+wbar <- b*dados16.xbar
+
+z.variance <- diag(a*dados16.S*a)
+w.variance <- diag(b*dados16.S*b)
+
+corr_between_z_w <- (a*dados16.S*b)/(sqrt(a*dados16.S*a)*sqrt(b*dados16.S*b))
+
+```
+
+## 17
+
+```{r}
+
+M <- matrix(c(-1,2,5,3,4,2,-2,2,3),3)
+Ones <- matrix(c(1,1,1,1,1,1,1,1,1),3)
+
+colMeans(M) -> M.colMeans
+
+M - Ones*M.colMeans
+
+Smatrixes <- 1/(dim(M)[1]-1)*t(M)%*%(diag(dim(M)[1]) - (1/dim(M)[1])*Ones)%*%M
+
+det(Smatrixes)
+prod(eigen(Smatrixes)$values)
+
+sum(eigen(Smatrixes)$values)
+```
+
+## 18
+
+> TODO Question: How do I calculate the S_uv?
+
+```{r}
+
+
+
+dados18 <- as.data.frame(readxl::read_xlsx(file.path(datasetsDir,"..","Exercicios","exe18.xlsx"), col_names=F))
+
+dados18.S <- var(dados18)
+
+UC <- matrix(c(1,1,1,-2,1,2,0,0,0,0,0,0),2)
+VC <- matrix(c(0,0,0,0,0,0,0,0,0,3,-1,2,1,-2,-3,-2,1,1),3)
+
+U.S <- UC%*%dados18.S%*%t(UC)
+V.S <- VC%*%dados18.S%*%t(VC)
+
+```
+
+## 19
+
+
+```{r}
+
+dados19 <- as.data.frame(readxl::read_xlsx(file.path(datasetsDir,"..","Exercicios","exe19.xlsx")))
+
+dados19.xbar <- colMeans(dados19)
+
+getStats <- function(data){
+  statsAlturas <- summary(data)
+  return(
+    list(
+      mean = statsAlturas[4],
+      var = var(data),
+      sd = sd(data),
+      min = statsAlturas[1],
+      max = statsAlturas[6],
+      quartis = c(statsAlturas[2],statsAlturas[3],statsAlturas[5])
+    )
+  )
+}
+
+Alturas <- getStats(c(dados19$AlturasA,dados19$AlturasB))
+Pesos <- getStats(c(dados19$PesosA,dados19$PesosB))
+
+plts <- sapply(colnames(dados19),function(col){
+  hist(dados19[,col],breaks=20, main=paste0("Histogram of ",col))
+})
+
+
+plts <- sapply(colnames(dados19),function(col){
+  boxplot(dados19[,col],breaks=20, main=paste0("Histogram of ",col))
+})
 
 ```

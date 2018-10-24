@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Multivariate Stats</title>
+  <meta name="description" content="The captain’s log of Multivariate Stats">
+  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Multivariate Stats" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="The captain’s log of Multivariate Stats" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Multivariate Stats" />
+  
+  <meta name="twitter:description" content="The captain’s log of Multivariate Stats" />
+  
+
+<meta name="author" content="Tiago dos Santos">
+
+
+<meta name="date" content="2018-10-24">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="index.html">
+<link rel="next" href="studies-experiments.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+<script src="libs/htmlwidgets-1.2/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.8.0/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.0.0/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-1.39.2/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-1.39.2/plotly-latest.min.js"></script>
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Lesson 2</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#random-variables-and-vectors"><i class="fa fa-check"></i><b>1.1</b> Random Variables and Vectors</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="index.html"><a href="index.html#elements-of-probability"><i class="fa fa-check"></i><b>1.1.1</b> Elements of probability</a></li>
+<li class="chapter" data-level="1.1.2" data-path="index.html"><a href="index.html#section"><i class="fa fa-check"></i><b>1.1.2</b> </a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#variance-and-corrected-variance"><i class="fa fa-check"></i><b>1.2</b> Variance and Corrected Variance</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="index.html"><a href="index.html#variance"><i class="fa fa-check"></i><b>1.2.1</b> Variance</a></li>
+<li class="chapter" data-level="1.2.2" data-path="index.html"><a href="index.html#corrected-variance"><i class="fa fa-check"></i><b>1.2.2</b> Corrected Variance</a></li>
+<li class="chapter" data-level="1.2.3" data-path="index.html"><a href="index.html#covariance"><i class="fa fa-check"></i><b>1.2.3</b> Covariance</a></li>
+<li class="chapter" data-level="1.2.4" data-path="index.html"><a href="index.html#pearson-correlation-coefficient"><i class="fa fa-check"></i><b>1.2.4</b> Pearson Correlation Coefficient</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#exercises"><i class="fa fa-check"></i><b>1.3</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="lesson-3.html"><a href="lesson-3.html"><i class="fa fa-check"></i><b>2</b> Lesson 3</a><ul>
+<li class="chapter" data-level="2.0.1" data-path="lesson-3.html"><a href="lesson-3.html#estatisticas-ordinais"><i class="fa fa-check"></i><b>2.0.1</b> Estatísticas Ordinais</a></li>
+<li class="chapter" data-level="2.0.2" data-path="lesson-3.html"><a href="lesson-3.html#transforming-to-distance-slide-21"><i class="fa fa-check"></i><b>2.0.2</b> Transforming to Distance (slide 21)</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="studies-experiments.html"><a href="studies-experiments.html"><i class="fa fa-check"></i><b>3</b> Studies &amp; Experiments</a><ul>
+<li class="chapter" data-level="3.1" data-path="studies-experiments.html"><a href="studies-experiments.html#matrixes-span-and-determinantes"><i class="fa fa-check"></i><b>3.1</b> Matrixes’ Span and Determinantes</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="studies-experiments.html"><a href="studies-experiments.html#more-that-3d"><i class="fa fa-check"></i><b>3.1.1</b> More that 3D</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="studies-experiments.html"><a href="studies-experiments.html#eigenvalues-and-eigenvectors"><i class="fa fa-check"></i><b>3.2</b> EigenValues and EigenVectors</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="studies-experiments.html"><a href="studies-experiments.html#eigen-values"><i class="fa fa-check"></i><b>3.2.1</b> Eigen Values</a></li>
+<li class="chapter" data-level="3.2.2" data-path="studies-experiments.html"><a href="studies-experiments.html#eigen-vectores"><i class="fa fa-check"></i><b>3.2.2</b> Eigen Vectores</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="studies-experiments.html"><a href="studies-experiments.html#spectral-decomposition"><i class="fa fa-check"></i><b>3.3</b> Spectral Decomposition</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="exercises-1.html"><a href="exercises-1.html"><i class="fa fa-check"></i><b>4</b> Exercises</a></li>
+<li class="chapter" data-level="5" data-path="exercise.html"><a href="exercise.html"><i class="fa fa-check"></i><b>5</b> Exercise</a><ul>
+<li class="chapter" data-level="5.1" data-path="exercise.html"><a href="exercise.html#exercise-1---linear-algebra"><i class="fa fa-check"></i><b>5.1</b> Exercise 1 - Linear Algebra</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="exercise.html"><a href="exercise.html#ex-1"><i class="fa fa-check"></i><b>5.1.1</b> Ex 1</a></li>
+<li class="chapter" data-level="5.1.2" data-path="exercise.html"><a href="exercise.html#ex-2"><i class="fa fa-check"></i><b>5.1.2</b> Ex 2</a></li>
+<li class="chapter" data-level="5.1.3" data-path="exercise.html"><a href="exercise.html#ex-3"><i class="fa fa-check"></i><b>5.1.3</b> Ex 3</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="exercise.html"><a href="exercise.html#section-1"><i class="fa fa-check"></i><b>5.2</b> </a></li>
+<li class="chapter" data-level="5.3" data-path="exercise.html"><a href="exercise.html#section-2"><i class="fa fa-check"></i><b>5.3</b> 11</a></li>
+<li class="chapter" data-level="5.4" data-path="exercise.html"><a href="exercise.html#section-3"><i class="fa fa-check"></i><b>5.4</b> 12</a></li>
+<li class="chapter" data-level="5.5" data-path="exercise.html"><a href="exercise.html#section-4"><i class="fa fa-check"></i><b>5.5</b> 13</a></li>
+<li class="chapter" data-level="5.6" data-path="exercise.html"><a href="exercise.html#section-5"><i class="fa fa-check"></i><b>5.6</b> 14</a></li>
+<li class="chapter" data-level="5.7" data-path="exercise.html"><a href="exercise.html#section-6"><i class="fa fa-check"></i><b>5.7</b> 15</a></li>
+<li class="chapter" data-level="5.8" data-path="exercise.html"><a href="exercise.html#section-7"><i class="fa fa-check"></i><b>5.8</b> 16</a></li>
+<li class="chapter" data-level="5.9" data-path="exercise.html"><a href="exercise.html#section-8"><i class="fa fa-check"></i><b>5.9</b> 17</a></li>
+<li class="chapter" data-level="5.10" data-path="exercise.html"><a href="exercise.html#section-9"><i class="fa fa-check"></i><b>5.10</b> 18</a></li>
+<li class="chapter" data-level="5.11" data-path="exercise.html"><a href="exercise.html#section-10"><i class="fa fa-check"></i><b>5.11</b> 19</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Multivariate Stats</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="lesson-3" class="section level1">
+<h1><span class="header-section-number">2</span> Lesson 3</h1>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dados2 &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(readxl<span class="op">::</span><span class="kw">read_xlsx</span>(<span class="kw">file.path</span>(datasetsDir, <span class="st">&quot;data2.xlsx&quot;</span>)))
+
+s &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="kw">min</span>(dados2<span class="op">$</span>imc),<span class="kw">max</span>(dados2<span class="op">$</span>imc), <span class="dt">length.out =</span> <span class="kw">length</span>(dados2<span class="op">$</span>imc))
+
+<span class="kw">hist</span>(
+  dados2<span class="op">$</span>imc, <span class="dt">probability =</span> T, <span class="dt">xlim=</span><span class="kw">c</span>(<span class="kw">min</span>(dados2<span class="op">$</span>imc),<span class="kw">max</span>(dados2<span class="op">$</span>imc)), <span class="dt">main=</span><span class="ot">NULL</span>, <span class="dt">xlab=</span><span class="ot">NULL</span>)  
+<span class="kw">lines</span>(s,<span class="kw">dnorm</span>(s,<span class="kw">mean</span>(dados2<span class="op">$</span>imc),<span class="kw">sd</span>(dados2<span class="op">$</span>imc)))</code></pre></div>
+<p><img src="Multivariate_Stats_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(<span class="kw">density</span>(dados2[,<span class="dv">1</span>]),<span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="fl">0.3</span>),<span class="dt">main =</span> <span class="st">&quot; &quot;</span>,<span class="dt">ylab =</span> <span class="st">&quot;Densidade&quot;</span>)
+<span class="kw">lines</span>(<span class="kw">density</span>(dados2[,<span class="dv">1</span>],<span class="dt">bw =</span> <span class="fl">0.3</span>),<span class="dt">col=</span><span class="st">&quot;red&quot;</span>)
+<span class="kw">lines</span>(<span class="kw">density</span>(dados2[,<span class="dv">1</span>],<span class="dt">bw =</span> <span class="fl">0.1</span>),<span class="dt">col=</span><span class="st">&quot;blue&quot;</span>)
+<span class="kw">legend</span>(<span class="st">&quot;topright&quot;</span>,<span class="dt">col=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">4</span>),<span class="dt">lty=</span><span class="dv">1</span>,<span class="dt">legend =</span> <span class="kw">c</span>(<span class="st">&quot;bw=default&quot;</span>,<span class="st">&quot;bw=0.3&quot;</span>,<span class="st">&quot;bw=0.1&quot;</span>))</code></pre></div>
+<p><img src="Multivariate_Stats_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(<span class="kw">density</span>(dados2[,<span class="dv">1</span>]),<span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="fl">0.3</span>),<span class="dt">main =</span> <span class="st">&quot; &quot;</span>,<span class="dt">ylab =</span> <span class="st">&quot;Densidade&quot;</span>)
+<span class="kw">lines</span>(<span class="kw">density</span>(dados2[,<span class="dv">1</span>],<span class="dt">kernel =</span> <span class="st">&quot;rectangular&quot;</span>),<span class="dt">col=</span><span class="st">&quot;red&quot;</span>)
+<span class="kw">lines</span>(<span class="kw">density</span>(dados2[,<span class="dv">1</span>],<span class="dt">kernel =</span> <span class="st">&quot;epanechnikov&quot;</span>),<span class="dt">col=</span><span class="st">&quot;blue&quot;</span>)
+<span class="kw">legend</span>(<span class="st">&quot;topright&quot;</span>,<span class="dt">col=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">4</span>),<span class="dt">lty=</span><span class="dv">1</span>,<span class="dt">legend =</span> <span class="kw">c</span>(<span class="st">&quot;default&quot;</span>,<span class="st">&quot;rectangular&quot;</span>,<span class="st">&quot;epanechnikov&quot;</span>))</code></pre></div>
+<p><img src="Multivariate_Stats_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dados1 &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(readxl<span class="op">::</span><span class="kw">read_xlsx</span>(<span class="kw">file.path</span>(datasetsDir, <span class="st">&quot;data1.xlsx&quot;</span>), <span class="dt">col_names =</span> F))
+
+
+<span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">3</span>,<span class="dv">2</span>))
+
+plots &lt;-<span class="st"> </span><span class="kw">apply</span>(dados1,<span class="dv">2</span>,<span class="cf">function</span>(iVar){
+  s &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="kw">min</span>(iVar),<span class="kw">max</span>(iVar), <span class="dt">length.out =</span> <span class="kw">length</span>(iVar))
+  <span class="kw">hist</span>(
+    iVar, <span class="dt">probability =</span> T, <span class="dt">xlim=</span><span class="kw">c</span>(<span class="kw">min</span>(iVar),<span class="kw">max</span>(iVar)), <span class="dt">main=</span><span class="ot">NULL</span>, <span class="dt">xlab=</span><span class="ot">NULL</span>) 
+  <span class="kw">lines</span>(s,<span class="kw">dnorm</span>(s,<span class="kw">mean</span>(iVar),<span class="kw">sd</span>(iVar)),<span class="dt">col=</span><span class="st">&quot;red&quot;</span>)
+  <span class="kw">lines</span>(<span class="kw">density</span>(iVar,<span class="dt">kernel =</span> <span class="st">&quot;rectangular&quot;</span>),<span class="dt">col=</span><span class="st">&quot;blue&quot;</span>)
+  <span class="kw">legend</span>(<span class="st">&quot;topright&quot;</span>,<span class="dt">col=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">4</span>),<span class="dt">lty=</span><span class="dv">1</span>,<span class="dt">legend =</span> <span class="kw">c</span>(<span class="st">&quot;histogram&quot;</span>,<span class="st">&quot;dnorm&quot;</span>,<span class="st">&quot;gaussian&quot;</span>))
+})</code></pre></div>
+<p><img src="Multivariate_Stats_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</code></pre></div>
+<div id="estatisticas-ordinais" class="section level3">
+<h3><span class="header-section-number">2.0.1</span> Estatísticas Ordinais</h3>
+<div id="minimum" class="section level4">
+<h4><span class="header-section-number">2.0.1.1</span> Minimum</h4>
+<p><span class="math display">\[ x_\left(1\right) = x_\left(1n\right) \]</span></p>
+</div>
+<div id="maximum" class="section level4">
+<h4><span class="header-section-number">2.0.1.2</span> Maximum</h4>
+<p><span class="math display">\[ x_\left(n\right) = x_\left(nn\right) \]</span></p>
+</div>
+<div id="inverso-da-funcao-distribuicao-gaussiana" class="section level4">
+<h4><span class="header-section-number">2.0.1.3</span> Inverso da função distribuição Gaussiana</h4>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">qnorm</span>(<span class="fl">0.975</span>)</code></pre></div>
+<pre><code>## [1] 1.959964</code></pre>
+</div>
+<div id="qq-plot" class="section level4">
+<h4><span class="header-section-number">2.0.1.4</span> QQ Plot</h4>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="op">-</span><span class="fl">1.00</span>,<span class="op">-</span><span class="fl">0.10</span>,<span class="fl">0.16</span>,<span class="fl">0.41</span>,<span class="fl">0.62</span>,<span class="fl">0.80</span>,<span class="fl">1.26</span>,<span class="fl">1.54</span>,<span class="fl">1.71</span>,<span class="fl">2.3</span>)
+
+xdf &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(x)
+<span class="kw">names</span>(xdf) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;values&quot;</span>)
+nLength &lt;-<span class="st"> </span><span class="kw">length</span>(xdf<span class="op">$</span>values)
+xdf<span class="op">$</span>empProb &lt;-<span class="st"> </span><span class="kw">sapply</span>(<span class="dv">1</span><span class="op">:</span>nLength,<span class="cf">function</span>(idx){
+  (idx<span class="op">-</span><span class="fl">0.5</span>)<span class="op">/</span>nLength
+})
+xdf<span class="op">$</span>theoreticProb &lt;-<span class="st"> </span><span class="kw">sapply</span>(xdf<span class="op">$</span>empProb,<span class="cf">function</span>(quantile){
+  <span class="kw">qnorm</span>(quantile)
+})
+
+knitr<span class="op">::</span><span class="kw">kable</span>(xdf)</code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="right">values</th>
+<th align="right">empProb</th>
+<th align="right">theoreticProb</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">-1.00</td>
+<td align="right">0.05</td>
+<td align="right">-1.6448536</td>
+</tr>
+<tr class="even">
+<td align="right">-0.10</td>
+<td align="right">0.15</td>
+<td align="right">-1.0364334</td>
+</tr>
+<tr class="odd">
+<td align="right">0.16</td>
+<td align="right">0.25</td>
+<td align="right">-0.6744898</td>
+</tr>
+<tr class="even">
+<td align="right">0.41</td>
+<td align="right">0.35</td>
+<td align="right">-0.3853205</td>
+</tr>
+<tr class="odd">
+<td align="right">0.62</td>
+<td align="right">0.45</td>
+<td align="right">-0.1256613</td>
+</tr>
+<tr class="even">
+<td align="right">0.80</td>
+<td align="right">0.55</td>
+<td align="right">0.1256613</td>
+</tr>
+<tr class="odd">
+<td align="right">1.26</td>
+<td align="right">0.65</td>
+<td align="right">0.3853205</td>
+</tr>
+<tr class="even">
+<td align="right">1.54</td>
+<td align="right">0.75</td>
+<td align="right">0.6744898</td>
+</tr>
+<tr class="odd">
+<td align="right">1.71</td>
+<td align="right">0.85</td>
+<td align="right">1.0364334</td>
+</tr>
+<tr class="even">
+<td align="right">2.30</td>
+<td align="right">0.95</td>
+<td align="right">1.6448536</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(xdf<span class="op">$</span>empProb , xdf<span class="op">$</span>theoreticProb )</code></pre></div>
+<p><img src="Multivariate_Stats_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">car<span class="op">::</span><span class="kw">qqp</span>(x,<span class="dt">distribution=</span><span class="st">&quot;norm&quot;</span>)</code></pre></div>
+<p><img src="Multivariate_Stats_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
+<pre><code>## [1]  1 10</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">defaultMar &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">5</span>, <span class="dv">4</span>, <span class="dv">4</span>, <span class="dv">2</span>) <span class="op">+</span><span class="st"> </span><span class="fl">0.1</span>
+
+<span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">3</span>,<span class="dv">2</span>),<span class="dt">mar=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>))
+
+plots &lt;-<span class="st"> </span><span class="kw">apply</span>(dados1,<span class="dv">2</span>,<span class="cf">function</span>(iVar){
+  car<span class="op">::</span><span class="kw">qqp</span>(iVar,<span class="dt">distribution=</span><span class="st">&quot;norm&quot;</span>)
+})</code></pre></div>
+<p><img src="Multivariate_Stats_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>),defaultMar)</code></pre></div>
+</div>
+</div>
+<div id="transforming-to-distance-slide-21" class="section level3">
+<h3><span class="header-section-number">2.0.2</span> Transforming to Distance (slide 21)</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x1 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">126974</span>,<span class="dv">96933</span>,<span class="dv">86656</span>,<span class="dv">63438</span>,<span class="dv">55264</span>,<span class="dv">50976</span>,<span class="dv">39069</span>,<span class="dv">36156</span>,<span class="dv">35209</span>,<span class="dv">32416</span>)
+x2 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">4224</span>,<span class="dv">3835</span>,<span class="dv">3510</span>,<span class="dv">3758</span>,<span class="dv">3939</span>,<span class="dv">1809</span>,<span class="dv">2946</span>, <span class="dv">359</span>,<span class="dv">2480</span>,<span class="dv">2413</span>)
+
+X &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(x1,x2),<span class="dv">10</span>,<span class="dv">2</span>)
+
+mx &lt;-<span class="st"> </span><span class="kw">colMeans</span>(X)
+S &lt;-<span class="st"> </span><span class="kw">var</span>(x)
+
+d2 &lt;-<span class="st"> </span><span class="kw">c</span>()
+
+distanceCsquare &lt;-<span class="st"> </span><span class="cf">function</span>(){
+  el <span class="op">-</span><span class="st"> </span>mean
+}
+
+<span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(X)){
+  d2[i] &lt;-<span class="st"> </span>(<span class="kw">t</span>(X[i,]) <span class="op">-</span><span class="st"> </span><span class="kw">colMeans</span>(X))<span class="op">%*%</span><span class="kw">solve</span>(<span class="kw">var</span>(X))<span class="op">%*%</span>(X[i,]<span class="op">-</span><span class="kw">colMeans</span>(X))
+}
+
+## o u é que tem distribuição beta
+
+## quantis teoriocos qui-quadrado
+qi_chi &lt;-<span class="st"> </span><span class="kw">round</span>(<span class="kw">qchisq</span>(xdf<span class="op">$</span>empProb, <span class="kw">ncol</span>(X)),<span class="dv">3</span>)
+qi_chi</code></pre></div>
+<pre><code>##  [1] 0.103 0.325 0.575 0.862 1.196 1.597 2.100 2.773 3.794 5.991</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">xdf<span class="op">$</span>theoreticProbQuiSq &lt;-<span class="st"> </span>qi_chi
+
+## quantis teoricos de beta
+
+qi_beta &lt;-<span class="st"> </span><span class="kw">round</span>(<span class="kw">qbeta</span>(xdf<span class="op">$</span>empProb, <span class="dt">shape1 =</span> <span class="kw">ncol</span>(X)<span class="op">/</span><span class="dv">2</span>, <span class="dt">shape2=</span>(<span class="kw">nrow</span>(X)<span class="op">-</span><span class="kw">ncol</span>(X)<span class="op">-</span><span class="dv">1</span>)<span class="op">/</span><span class="dv">2</span>),<span class="dv">3</span>)
+qi_beta</code></pre></div>
+<pre><code>##  [1] 0.015 0.045 0.079 0.116 0.157 0.204 0.259 0.327 0.418 0.575</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">xdf<span class="op">$</span>theoreticProbQuiSq &lt;-<span class="st"> </span>qi_beta
+
+## aqui deveria ser u em vez de d2
+<span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))
+<span class="kw">plot</span>(xdf<span class="op">$</span>theoreticProbQuiSq, d2)
+car<span class="op">::</span><span class="kw">qqp</span>(d2,<span class="dt">distribution=</span><span class="st">&quot;chisq&quot;</span>,<span class="dt">df=</span><span class="kw">ncol</span>(X))</code></pre></div>
+<p><img src="Multivariate_Stats_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
+<pre><code>## [1] 8 1</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">hypothesisVal &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">11</span>,<span class="dv">3</span>)
+
+X &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">6</span>,<span class="dv">10</span>,<span class="dv">8</span>,<span class="dv">9</span>,<span class="dv">6</span>,<span class="dv">3</span>),<span class="dv">3</span>)
+
+Xmeans &lt;-<span class="st"> </span><span class="kw">colMeans</span>(X)
+
+S &lt;-<span class="st"> </span><span class="kw">var</span>(X)
+
+Sminus1 &lt;-<span class="st"> </span><span class="kw">solve</span>(S)
+
+<span class="kw">t</span>(<span class="kw">nrow</span>(X)<span class="op">*</span>(Xmeans <span class="op">-</span><span class="st"> </span>hypothesisVal))<span class="op">%*%</span>Sminus1<span class="op">%*%</span>(Xmeans <span class="op">-</span><span class="st"> </span>hypothesisVal)</code></pre></div>
+<pre><code>##      [,1]
+## [1,]    7</code></pre>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="studies-experiments.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
