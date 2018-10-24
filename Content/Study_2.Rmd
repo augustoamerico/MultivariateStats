@@ -118,9 +118,31 @@ drawMatrixWithDet(matrixB,dim(matrixB)[1])
 ```
 
 
-### More thatn 3D
+### More that 3D
 
 > You have to let it all go, Neo. Fear, doubt, and disbelief. Free your mind
 >
 > - Morpheus
+
+Well, you have to stuck to the formulas... This will make sense once you can bind the visual insights to the formula insights to under 3D.
+
+## EigenValues and EigenVectors
+
+### Eigen Values
+$$
+|S-lI| = 0
+$$
+
+Subtracting $lI$ from $S$ will create a matrix with determinant equals zero, meaning all of its vectors lay on a single line - all the vectors have the same span
+
+### Eigen Vectores
+
+$$
+Sx = lx
+$$
+I want an $x$ vector that, when rotated by $S$, the result is the same than scaling $x$ by $l$.
+
+
+## Spectral Decomposition
+
 

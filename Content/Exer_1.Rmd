@@ -3,9 +3,96 @@ title: "Computational Stats"
 site: bookdown::bookdown_site
 ---
 
-This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
+```{r include=F}
+library(plotly)
+library(webshot)
 
-Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Cmd+Shift+Enter*. 
+drawMatrixWithDet <- function(iMatrix, size){
+  if(size>3){
+    #raise error
+  } 
+  if(size==2){
+    matrixRep <- iMatrix
+    a<-iMatrix[1,]
+    b<-iMatrix[2,]
+    aPb<-a+b
+    zero<-c(0,0)
+    
+    surf<-as.data.frame(
+      matrix(c(
+        zero,b,aPb,a
+      ),4,byrow=T))
+    names(surf)<-c("x","y")
+    
+    newRows <- c()
+    for(i in 1:dim(matrixRep)[2]){
+      newRows<- c(newRows,0,0,matrixRep[i,])
+    }
+    
+    newRows <- c(newRows,0,0)
+    dfPlot <- as.data.frame(matrix(newRows,dim(matrixRep)[2]*2+1,byrow = T))
+    colors <- c("red","red","green","green","blue")
+    dfPlot$colors <- colors
+    names(dfPlot) <- c("x","y","colors")
+    
+    plotly::plot_ly(dfPlot, x = ~x, y = ~y, type = 'scatter', mode = 'lines',
+                    opacity = 1, line = list(width = 3, color = ~colors,reverscale = FALSE)) %>%
+      plotly::add_polygons(
+        x = surf$x,
+        y = surf$y,
+        opacity=0.4
+        #facecolor = rep(toRGB(viridisLite::inferno(6)), each = 2)
+        #facecolor = rep("orange",12)
+      )
+    
+    
+  }else{
+    matrixRep <- iMatrix
+    a<-iMatrix[1,]
+    b<-iMatrix[2,]
+    c<-iMatrix[3,]
+    aPb<-a+b
+    aPc<-a+c
+    bPc<-b+c
+    aPbPc<-a+b+c
+    zero<-c(0,0,0)
+    surf<-as.data.frame(
+      matrix(c(
+        zero,b,aPb,a,c,bPc,aPbPc,aPc
+      ),8,byrow=T))
+    
+    names(surf)<-c("x","y","z")
+    newRows <- c()
+    for(i in 1:dim(matrixRep)[2]){
+      newRows<- c(newRows,0,0,0,matrixRep[i,])
+    }
+    newRows <- c(newRows,0,0,0)
+    dfPlot <- as.data.frame(matrix(newRows,dim(matrixRep)[2]*2+1,byrow = T))
+    colors <- c("red","red","red","green","green","blue","blue")
+    dfPlot$colors <- colors
+    names(dfPlot) <- c("x","y","z","colors")
+    
+    #print(dfPlot)
+    #print(surf)
+    
+    plotly::plot_ly(dfPlot, x = ~x, y = ~y, z = ~z, type = 'scatter3d', mode = 'lines',
+                    opacity = 1, line = list(width = 6, color = ~colors,  opacity=c(0.3,0.3,0.3,0.3,0.3,0.3),reverscale = FALSE)) %>%
+      plotly::add_mesh(
+        x = surf$x,
+        y = surf$y,
+        z = surf$z,
+        i = c(0, 0, 0, 0, 2, 2, 1, 1, 1, 1, 5, 5),
+        j = c(1, 3, 4, 3, 6, 3, 2, 5, 5, 0, 6, 4),
+        k = c(2, 2, 7, 7, 7, 7, 6, 6, 4, 4, 7, 7),
+        opacity=0.4,
+        #facecolor = rep(toRGB(viridisLite::inferno(6)), each = 2)
+        facecolor = rep("orange",12)
+      )
+  }
+}
+
+```
+
 
 # Exercise
 
@@ -92,6 +179,8 @@ A = matrix(c(1,2,5,2,4,10,3,6,15),3)
 
 B = matrix(c(-1,-1,1,1,1,-1,-2,-2,2),3)
 
+C = matrix(c(1,1,2,2,2,2,4,4,4),3)
+
 ```
 
 a)
@@ -99,22 +188,161 @@ $$ A \times B = 0 $$
 ```{r} 
 A %*% B
 ```
-
 b)
+```{r}
+A %*% B[,1]
+``` 
+
+c)
 $$ tr(A)$$ 
 ```{r} 
-#tr(A)
+psych::tr(A)
 ```
 
 $$ tr(B)$$ 
 ```{r} 
-#tr(B)
+psych::tr(B)
 ```
 
 
-b)
+d)
+
+It is important to notice that the matrix A is a matrix in which all of its vectors are linear dependent - aka they are all in the same span:
+
+```{r}
+drawMatrixWithDet(A, dim(A)[1])
+```
+
+No, the graph is not wrong. All of the vectors are in the same span.
+
+And since they are linear dependent, the determinant is 0.
+
 $$ det(A)$$ 
 ```{r} 
 det(A)
 ```
 
+##
+
+```{r}
+A <- matrix(c(3,1,1,1,0,2,1,2,0),3)
+eigenObj <- eigen(A)
+Lambda <- eigenObj$values*diag(3)
+P <- eigenObj$vectors
+Pline <- t(P)
+
+A.spectralDecomp <- P%*%(Lambda)%*%Pline
+
+A.spectralDecomp.2 <- matrix(rep(0,9),3)
+
+for(i in 1:nrow(Lambda)){
+  A.spectralDecomp.2 = A.spectralDecomp.2 + eigenObj$values[i]*P[,i]%*%t(P[,i])
+}
+
+```
+
+## 11
+
+```{r}
+
+dados11 <- as.data.frame(readxl::read_xlsx(file.path(datasetsDir,"..","Exercicios","exe11.xlsx"), col_names=F))
+
+plot(x=dados11$X__1,y=dados11$X__2)
+plot(x=dados11$X__1,y=dados11$X__3)
+plot(x=dados11$X__2,y=dados11$X__3)
+
+xbars <- colMeans(dados11)
+S <- var(dados11)
+CorrMatrix <- cor(dados11)
+
+
+```
+
+## 12
+
+```{r}
+
+dados12 <- as.data.frame(readxl::read_xlsx(file.path(datasetsDir,"..","Exercicios","exe12.xlsx"), col_names=F))
+
+plot(x=dados12$X__1,y=dados12$X__2)
+plot(x=dados12$X__5,y=dados12$X__3)
+plot(x=dados12$X__2,y=dados12$X__3)
+
+xbars <- colMeans(dados12)
+S <- var(dados12)
+CorrMatrix <- cor(dados12)
+
+
+
+```
+
+## 13
+
+```{r}
+
+dados13 <- as.data.frame(readxl::read_xlsx(file.path(datasetsDir,"..","Exercicios","exe13.xlsx"), col_names=F))
+
+xs <- c(1,2,3)
+ys <- c(4,5)
+
+xsbar <- mean(colMeans(dados13[,xs]))
+ysbar <- mean(colMeans(dados13[,ys]))
+
+S <- var(dados13)
+S11 <- S[xs,xs]
+S12 <- S[xs,ys]
+S21 <- S[ys,xs]
+S22 <- S[ys,ys]
+
+
+```
+
+## 14
+
+```{r}
+
+dados13 <- as.data.frame(readxl::read_xlsx(file.path(datasetsDir,"..","Exercicios","exe13.xlsx"), col_names=F))
+
+cLinear <- c(3,-2,4,-1,1)
+
+xbar <- colMeans(dados13)
+S <- var(dados13)
+R <- cor(dados13)
+
+zmeans <- t(cLinear)%*%xbar
+zS <- cLinear%*%S%*%cLinear
+#z = 3x1 − 2x2 + 4x3 − x4 + x5 .
+
+C <- matrix(c(1,2,-1,1,-3,-2,1,1,1,1,-2,-2,1,-1,3),3)
+
+z_M_means <- C%*%xbar
+Sz <- C%*%var(dados13)%*%t(C)
+
+D <- sqrt(diag(Sz))*diag(3)
+Dinv <- solve(D)
+
+Ry <- Dinv%*%Sz%*%Dinv
+
+
+```
+
+## 15
+
+```{r}
+
+dados13 <- as.data.frame(readxl::read_xlsx(file.path(datasetsDir,"..","Exercicios","exe13.xlsx"), col_names=F))
+
+cLinear <- c(3,-2,4,-1,1)
+
+xbar <- colMeans(dados13)
+S <- var(dados13)
+R <- cor(dados13)
+
+S.eigen <- eigen(S)
+
+S.det <- prod(S.eigen$values)
+S.tr <- sum(S.eigen$values)
+R.det <- det(R)
+
+
+```

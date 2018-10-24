@@ -1,0 +1,209 @@
+---
+title: "Computational Stats"
+site: bookdown::bookdown_site
+---
+
+```{r include = FALSE}
+PROJHOME <- "/Users/tiago.correia/courses/MestradoBigData/EstatisticaMultivariada"
+datasetsDir=file.path(PROJHOME,"datasets")
+```
+
+
+# Lesson 5
+
+## ANOVA
+
+
+```{r}
+
+X <- t(matrix(c(9,6,9,0,2,3,1,2,3,2,7,4,0,8,9,7),2,byrow=T))
+
+S <- var(X)
+TotalMatrix <- (dim(X)[1]-1)*S
+
+#samples extrated from population 1
+n1 <- 3
+S1 <- var(X[1:3,])
+#samples extrated from population 2
+n2 <- 2
+S2 <- var(X[4:5,])
+#samples extrated from population 3
+n3 <- 3 
+S3 <- var(X[6:8,])
+
+# Commum Covariance Matrix that we need to apply ANOVA
+W = (n1-1)*S1 + (n2-1)*S2 + (n3-1)*S3
+
+B <- TotalMatrix - W
+
+# observed test statistics
+tObs <- det(W)/det(TotalMatrix)
+
+#alternativamente, posso calcular
+eigenValues <- eigen(B%*%solve(W))$values
+tObs.alternative <- prod(1/(1+eigenValues))
+
+# Transform the last value (that has an unkown distribution) to an F distribution through the following transform: (aka F approximation)
+
+tObs.F <- (((dim(X)[1]-dim(X)[2]-2)/dim(X)[2])) * ((1-sqrt(tObs.alternative))/(sqrt(tObs.alternative)))
+
+
+```
+
+
+g = 3 (número de grupos)
+p = 2 (número de dimensões)
+
+$$
+
+F_{2*p,\text{  } 2*(n-p-2)}
+
+$$
+```{r}
+
+significanceLevel <- 0.01
+
+criticRegion <- qf(1-significanceLevel, 2*dim(X)[2], 2*(dim(X)[1]-dim(X)[2]-2))
+
+p-value <- 1-pf(tObs.F,4,8)
+
+
+```
+
+Ambas são verdadeiras (uma implica a outra)
+- Rejeita-se porque p-value <= 0.01
+- Rejeita-se porque tObs transformado em F é >= `criticRegion`
+
+
+Agora nós rejeitamos mas não sabemos porquê:
+ - foi porque todas as dimensões são diferentes? (dimensões ou grupos?)
+ - ou só porque uma é diferente?
+
+Para tal, vamos analizar os intervalos de confiança 
+
+## Adding the Samples column
+
+```{r}
+
+grupo <- c(rep(1,3),rep(2,2),rep(3,3))
+Xg <- cbind(grupo, X)
+
+```
+
+## Exercicio 2
+
+Intervalos de Confiança a 99%
+
+```{r}
+
+m <- aggregate(Xg[,-1],by=list(G = Xg[,1]), FUN=mean)
+
+g <- length(unique(Xg[,1]))
+
+w1 <- W[1,1]
+w2 <- W[2,2]
+
+#numero de comparações
+m <- 2*(g*(g-1))/2
+
+alpha <- 0.01
+
+t<-qt(alpha,p = 1-(alpha* dim(X)[1])/2, df = dim(X)[1]-g)
+
+colnames(m) <- c("G","x1","x2")
+
+varsComp <- c("x1","x2")
+groups <- list(c(1,2),c(2,3),c(1,3))
+
+comparisonList <- list()
+
+for(currVar in varsComp){
+  for(group in groups){
+    res <- (m[group[1],currVar]-m[group[2],currVar])-t*sqrt( w1/(dim(X)[1]-g)*(1/n1 + 1/n2) )
+    comparisonList[length(comparisonList)+1] = list(var = currVar, cmp = group, res=res)
+  }
+}
+
+
+(m[1,"x1"]-m[2,"x1"])-t*sqrt( w1/(dim(X)[1]-g)*(1/n1 + 1/n2) )
+
+
+
+```
+
+
+## Manova
+
+```{r}
+
+dados5 <- as.data.frame(readxl::read_xlsx(file.path(datasetsDir, "data5.xlsx")))
+dados5$fator1 <- as.factor(dados5$fator1)
+dados5$fator2 <- as.factor(dados5$fator2)
+
+m <- manova(cbind(x1,x2,x3)*fator1*fator2, data=dados5)
+
+summary(m, test = "Wilks")
+
+
+m1 <- aov(x1*as.factor(fator1)*as.factor(fator2),data=dados5)
+summary(m1)
+
+
+m2 <- aov(x2*as.factor(fator1)*as.factor(fator2),data=dados5)
+summary(m2)
+
+
+m3 <- aov(x3*as.factor(fator1)*as.factor(fator2),data=dados5)
+summary(m3)
+
+
+
+```
+
+## avaliar a Homocedasticidade das variáveis
+
+```{r}
+
+dados7 <- as.data.frame(readxl::read_xlsx(file.path(datasetsDir, "data7.xlsx"), col_names = F))
+
+colnames(dados7) <- c("G","X1","X2","X3","X4")
+
+S1 <- var(dados7[dados7$G == 1,-1])
+S2 <- var(dados7[dados7$G == 2,-1])
+
+n1 <- sum(dados7$G==1)
+n2 <- sum(dados7$G==2)
+
+#k is the number of groups
+Spooled <- ((n1-1)*S1+(n2-1)*S2)/(n1+n2-2)
+
+num <- det(S1)^((n1-1)/2) * det(S2)^((n2-1)/2)
+
+den <- det(Spooled)^((n1+n2-2)/2)
+
+lambda <- num/den
+
+p <- dim(dados7[,-1])[2]
+g <- length(unique(dados7$G))
+ni <- c(n1,n2)
+
+c1 <- (sum(1/(ni-1)) - 1/(sum(ni-1)))*((2*p^2 + 3*p - 1)/(6*(p+1)*(g-1)))
+
+Ustar <- -2*(1-c1)*log(lambda)
+
+```
+
+We know that the transformation $-2(1 - c1)ln\Lambda$ follows a $\chi^2_{(g-1)(p+1)}$
+
+```{r}
+
+qchisq(0.95, g-1, p+1)
+
+```
+
+Therefore we do not reject H0.
+
+All automated now!
+```{r}
+biotools::boxM(data= dados7[,-1], grouping = dados7$G)
+```

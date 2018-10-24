@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Multivariate Stats</title>
+  <meta name="description" content="The captain’s log of Multivariate Stats">
+  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Multivariate Stats" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="The captain’s log of Multivariate Stats" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Multivariate Stats" />
+  
+  <meta name="twitter:description" content="The captain’s log of Multivariate Stats" />
+  
+
+<meta name="author" content="Tiago dos Santos">
+
+
+<meta name="date" content="2018-10-24">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="exercises-1.html">
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+<script src="libs/htmlwidgets-1.2/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.8.0/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.0.0/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-1.39.2/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-1.39.2/plotly-latest.min.js"></script>
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Lesson 2</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#random-variables-and-vectors"><i class="fa fa-check"></i><b>1.1</b> Random Variables and Vectors</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="index.html"><a href="index.html#elements-of-probability"><i class="fa fa-check"></i><b>1.1.1</b> Elements of probability</a></li>
+<li class="chapter" data-level="1.1.2" data-path="index.html"><a href="index.html#section"><i class="fa fa-check"></i><b>1.1.2</b> </a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#variance-and-corrected-variance"><i class="fa fa-check"></i><b>1.2</b> Variance and Corrected Variance</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="index.html"><a href="index.html#variance"><i class="fa fa-check"></i><b>1.2.1</b> Variance</a></li>
+<li class="chapter" data-level="1.2.2" data-path="index.html"><a href="index.html#corrected-variance"><i class="fa fa-check"></i><b>1.2.2</b> Corrected Variance</a></li>
+<li class="chapter" data-level="1.2.3" data-path="index.html"><a href="index.html#covariance"><i class="fa fa-check"></i><b>1.2.3</b> Covariance</a></li>
+<li class="chapter" data-level="1.2.4" data-path="index.html"><a href="index.html#pearson-correlation-coefficient"><i class="fa fa-check"></i><b>1.2.4</b> Pearson Correlation Coefficient</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#exercises"><i class="fa fa-check"></i><b>1.3</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="lesson-3.html"><a href="lesson-3.html"><i class="fa fa-check"></i><b>2</b> Lesson 3</a><ul>
+<li class="chapter" data-level="2.0.1" data-path="lesson-3.html"><a href="lesson-3.html#estatisticas-ordinais"><i class="fa fa-check"></i><b>2.0.1</b> Estatísticas Ordinais</a></li>
+<li class="chapter" data-level="2.0.2" data-path="lesson-3.html"><a href="lesson-3.html#transforming-to-distance-slide-21"><i class="fa fa-check"></i><b>2.0.2</b> Transforming to Distance (slide 21)</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="studies-experiments.html"><a href="studies-experiments.html"><i class="fa fa-check"></i><b>3</b> Studies &amp; Experiments</a><ul>
+<li class="chapter" data-level="3.1" data-path="studies-experiments.html"><a href="studies-experiments.html#matrixes-span-and-determinantes"><i class="fa fa-check"></i><b>3.1</b> Matrixes’ Span and Determinantes</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="studies-experiments.html"><a href="studies-experiments.html#more-that-3d"><i class="fa fa-check"></i><b>3.1.1</b> More that 3D</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="studies-experiments.html"><a href="studies-experiments.html#eigenvalues-and-eigenvectors"><i class="fa fa-check"></i><b>3.2</b> EigenValues and EigenVectors</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="studies-experiments.html"><a href="studies-experiments.html#eigen-values"><i class="fa fa-check"></i><b>3.2.1</b> Eigen Values</a></li>
+<li class="chapter" data-level="3.2.2" data-path="studies-experiments.html"><a href="studies-experiments.html#eigen-vectores"><i class="fa fa-check"></i><b>3.2.2</b> Eigen Vectores</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="studies-experiments.html"><a href="studies-experiments.html#spectral-decomposition"><i class="fa fa-check"></i><b>3.3</b> Spectral Decomposition</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="exercises-1.html"><a href="exercises-1.html"><i class="fa fa-check"></i><b>4</b> Exercises</a></li>
+<li class="chapter" data-level="5" data-path="exercise.html"><a href="exercise.html"><i class="fa fa-check"></i><b>5</b> Exercise</a><ul>
+<li class="chapter" data-level="5.1" data-path="exercise.html"><a href="exercise.html#exercise-1---linear-algebra"><i class="fa fa-check"></i><b>5.1</b> Exercise 1 - Linear Algebra</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="exercise.html"><a href="exercise.html#ex-1"><i class="fa fa-check"></i><b>5.1.1</b> Ex 1</a></li>
+<li class="chapter" data-level="5.1.2" data-path="exercise.html"><a href="exercise.html#ex-2"><i class="fa fa-check"></i><b>5.1.2</b> Ex 2</a></li>
+<li class="chapter" data-level="5.1.3" data-path="exercise.html"><a href="exercise.html#ex-3"><i class="fa fa-check"></i><b>5.1.3</b> Ex 3</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="exercise.html"><a href="exercise.html#section-1"><i class="fa fa-check"></i><b>5.2</b> </a></li>
+<li class="chapter" data-level="5.3" data-path="exercise.html"><a href="exercise.html#section-2"><i class="fa fa-check"></i><b>5.3</b> 11</a></li>
+<li class="chapter" data-level="5.4" data-path="exercise.html"><a href="exercise.html#section-3"><i class="fa fa-check"></i><b>5.4</b> 12</a></li>
+<li class="chapter" data-level="5.5" data-path="exercise.html"><a href="exercise.html#section-4"><i class="fa fa-check"></i><b>5.5</b> 13</a></li>
+<li class="chapter" data-level="5.6" data-path="exercise.html"><a href="exercise.html#section-5"><i class="fa fa-check"></i><b>5.6</b> 14</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Multivariate Stats</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="exercise" class="section level1">
+<h1><span class="header-section-number">5</span> Exercise</h1>
+<div id="exercise-1---linear-algebra" class="section level2">
+<h2><span class="header-section-number">5.1</span> Exercise 1 - Linear Algebra</h2>
+<div id="ex-1" class="section level3">
+<h3><span class="header-section-number">5.1.1</span> Ex 1</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">A =<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">4</span>,<span class="dv">7</span>,<span class="dv">2</span>,<span class="dv">5</span>,<span class="dv">3</span>,<span class="dv">8</span>),<span class="dv">2</span>)
+
+B =<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">3</span>,<span class="dv">6</span>,<span class="op">-</span><span class="dv">2</span>,<span class="dv">9</span>,<span class="dv">4</span>,<span class="op">-</span><span class="dv">5</span>),<span class="dv">2</span>)</code></pre></div>
+<ol style="list-style-type: lower-alpha">
+<li><span class="math display">\[ A + B = \]</span></li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">A<span class="op">+</span>B </code></pre></div>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]    7    0    7
+## [2,]   13   14    3</code></pre>
+<p><span class="math display">\[ A - B = \]</span></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">A<span class="op">-</span>B</code></pre></div>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]    1    4   -1
+## [2,]    1   -4   13</code></pre>
+<ol start="2" style="list-style-type: lower-alpha">
+<li><span class="math display">\[ A&#39; \times A = \]</span></li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">t</span>(A)<span class="op">%*%</span>A</code></pre></div>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]   65   43   68
+## [2,]   43   29   46
+## [3,]   68   46   73</code></pre>
+<p><span class="math display">\[ A \times A&#39; = \]</span></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">A<span class="op">%*%</span><span class="kw">t</span>(A)</code></pre></div>
+<pre><code>##      [,1] [,2]
+## [1,]   29   62
+## [2,]   62  138</code></pre>
+</div>
+<div id="ex-2" class="section level3">
+<h3><span class="header-section-number">5.1.2</span> Ex 2</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">A =<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="op">-</span><span class="dv">1</span>),<span class="dv">2</span>)
+
+B =<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">5</span>),<span class="dv">2</span>)</code></pre></div>
+<ol style="list-style-type: lower-alpha">
+<li><span class="math display">\[ A \times B = \]</span></li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">A <span class="op">%*%</span><span class="st"> </span>B </code></pre></div>
+<pre><code>##      [,1] [,2]
+## [1,]    5   15
+## [2,]    3   -5</code></pre>
+<p><span class="math display">\[ B \times A = \]</span></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">B <span class="op">%*%</span><span class="st"> </span>A</code></pre></div>
+<pre><code>##      [,1] [,2]
+## [1,]    2    6
+## [2,]   11   -2</code></pre>
+<ol start="2" style="list-style-type: lower-alpha">
+<li><span class="math display">\[ det(A \times B) = \]</span></li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">det</span>(A <span class="op">%*%</span><span class="st"> </span>B )</code></pre></div>
+<pre><code>## [1] -70</code></pre>
+<p><span class="math display">\[ det(A) = \]</span></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">det</span>(A)</code></pre></div>
+<pre><code>## [1] -7</code></pre>
+<p><span class="math display">\[ det(B) = \]</span></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">det</span>(B)</code></pre></div>
+<pre><code>## [1] 10</code></pre>
+</div>
+<div id="ex-3" class="section level3">
+<h3><span class="header-section-number">5.1.3</span> Ex 3</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">A =<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">5</span>,<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">10</span>,<span class="dv">3</span>,<span class="dv">6</span>,<span class="dv">15</span>),<span class="dv">3</span>)
+
+B =<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>,<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="op">-</span><span class="dv">1</span>,<span class="op">-</span><span class="dv">2</span>,<span class="op">-</span><span class="dv">2</span>,<span class="dv">2</span>),<span class="dv">3</span>)
+
+C =<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">4</span>),<span class="dv">3</span>)</code></pre></div>
+<ol style="list-style-type: lower-alpha">
+<li><span class="math display">\[ A \times B = 0 \]</span></li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">A <span class="op">%*%</span><span class="st"> </span>B</code></pre></div>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]    0    0    0
+## [2,]    0    0    0
+## [3,]    0    0    0</code></pre>
+<ol start="2" style="list-style-type: lower-alpha">
+<li></li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">A <span class="op">%*%</span><span class="st"> </span>B[,<span class="dv">1</span>]</code></pre></div>
+<pre><code>##      [,1]
+## [1,]    0
+## [2,]    0
+## [3,]    0</code></pre>
+<ol start="3" style="list-style-type: lower-alpha">
+<li><span class="math display">\[ tr(A)\]</span></li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">psych<span class="op">::</span><span class="kw">tr</span>(A)</code></pre></div>
+<pre><code>## [1] 20</code></pre>
+<p><span class="math display">\[ tr(B)\]</span></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">psych<span class="op">::</span><span class="kw">tr</span>(B)</code></pre></div>
+<pre><code>## [1] 2</code></pre>
+<ol start="4" style="list-style-type: lower-alpha">
+<li></li>
+</ol>
+<p>It is important to notice that the matrix A is a matrix in which all of its vectors are linear dependent - aka they are all in the same span:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">drawMatrixWithDet</span>(A, <span class="kw">dim</span>(A)[<span class="dv">1</span>])</code></pre></div>
+<pre><code>## Warning: &#39;mesh3d&#39; objects don&#39;t have these attributes: &#39;mode&#39;, &#39;line&#39;
+## Valid attributes include:
+## &#39;type&#39;, &#39;visible&#39;, &#39;showlegend&#39;, &#39;legendgroup&#39;, &#39;opacity&#39;, &#39;name&#39;, &#39;uid&#39;, &#39;ids&#39;, &#39;customdata&#39;, &#39;selectedpoints&#39;, &#39;hoverinfo&#39;, &#39;hoverlabel&#39;, &#39;stream&#39;, &#39;transforms&#39;, &#39;x&#39;, &#39;y&#39;, &#39;z&#39;, &#39;i&#39;, &#39;j&#39;, &#39;k&#39;, &#39;text&#39;, &#39;delaunayaxis&#39;, &#39;alphahull&#39;, &#39;intensity&#39;, &#39;color&#39;, &#39;vertexcolor&#39;, &#39;facecolor&#39;, &#39;cauto&#39;, &#39;cmin&#39;, &#39;cmax&#39;, &#39;colorscale&#39;, &#39;autocolorscale&#39;, &#39;reversescale&#39;, &#39;showscale&#39;, &#39;colorbar&#39;, &#39;flatshading&#39;, &#39;contour&#39;, &#39;lightposition&#39;, &#39;lighting&#39;, &#39;xcalendar&#39;, &#39;ycalendar&#39;, &#39;zcalendar&#39;, &#39;scene&#39;, &#39;idssrc&#39;, &#39;customdatasrc&#39;, &#39;hoverinfosrc&#39;, &#39;xsrc&#39;, &#39;ysrc&#39;, &#39;zsrc&#39;, &#39;isrc&#39;, &#39;jsrc&#39;, &#39;ksrc&#39;, &#39;textsrc&#39;, &#39;intensitysrc&#39;, &#39;vertexcolorsrc&#39;, &#39;facecolorsrc&#39;, &#39;key&#39;, &#39;set&#39;, &#39;frame&#39;, &#39;transforms&#39;, &#39;_isNestedKey&#39;, &#39;_isSimpleKey&#39;, &#39;_isGraticule&#39;, &#39;_bbox&#39;</code></pre>
+<div id="htmlwidget-e8ae1021ca7e96c40503" style="width:672px;height:480px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-e8ae1021ca7e96c40503">{"x":{"visdat":{"23dbdfb6616":["function () ","plotlyVisDat"]},"cur_data":"23dbdfb6616","attrs":{"23dbdfb6616":{"x":{},"y":{},"z":{},"mode":"lines","opacity":1,"line":{"width":6,"color":{},"opacity":[0.3,0.3,0.3,0.3,0.3,0.3],"reverscale":false},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter3d"},"23dbdfb6616.1":{"x":[0,2,3,1,5,7,8,6],"y":[0,4,6,2,10,14,16,12],"z":[0,6,9,3,15,21,24,18],"mode":"lines","opacity":0.4,"line":{"width":6,"color":{},"opacity":[0.3,0.3,0.3,0.3,0.3,0.3],"reverscale":false},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"mesh3d","i":[0,0,0,0,2,2,1,1,1,1,5,5],"j":[1,3,4,3,6,3,2,5,5,0,6,4],"k":[2,2,7,7,7,7,6,6,4,4,7,7],"facecolor":["orange","orange","orange","orange","orange","orange","orange","orange","orange","orange","orange","orange"],"inherit":true}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"scene":{"xaxis":{"title":"x"},"yaxis":{"title":"y"},"zaxis":{"title":"z"}},"hovermode":"closest","showlegend":true,"legend":{"yanchor":"top","y":0.5}},"source":"A","config":{"modeBarButtonsToAdd":[{"name":"Collaborate","icon":{"width":1000,"ascent":500,"descent":-50,"path":"M487 375c7-10 9-23 5-36l-79-259c-3-12-11-23-22-31-11-8-22-12-35-12l-263 0c-15 0-29 5-43 15-13 10-23 23-28 37-5 13-5 25-1 37 0 0 0 3 1 7 1 5 1 8 1 11 0 2 0 4-1 6 0 3-1 5-1 6 1 2 2 4 3 6 1 2 2 4 4 6 2 3 4 5 5 7 5 7 9 16 13 26 4 10 7 19 9 26 0 2 0 5 0 9-1 4-1 6 0 8 0 2 2 5 4 8 3 3 5 5 5 7 4 6 8 15 12 26 4 11 7 19 7 26 1 1 0 4 0 9-1 4-1 7 0 8 1 2 3 5 6 8 4 4 6 6 6 7 4 5 8 13 13 24 4 11 7 20 7 28 1 1 0 4 0 7-1 3-1 6-1 7 0 2 1 4 3 6 1 1 3 4 5 6 2 3 3 5 5 6 1 2 3 5 4 9 2 3 3 7 5 10 1 3 2 6 4 10 2 4 4 7 6 9 2 3 4 5 7 7 3 2 7 3 11 3 3 0 8 0 13-1l0-1c7 2 12 2 14 2l218 0c14 0 25-5 32-16 8-10 10-23 6-37l-79-259c-7-22-13-37-20-43-7-7-19-10-37-10l-248 0c-5 0-9-2-11-5-2-3-2-7 0-12 4-13 18-20 41-20l264 0c5 0 10 2 16 5 5 3 8 6 10 11l85 282c2 5 2 10 2 17 7-3 13-7 17-13z m-304 0c-1-3-1-5 0-7 1-1 3-2 6-2l174 0c2 0 4 1 7 2 2 2 4 4 5 7l6 18c0 3 0 5-1 7-1 1-3 2-6 2l-173 0c-3 0-5-1-8-2-2-2-4-4-4-7z m-24-73c-1-3-1-5 0-7 2-2 3-2 6-2l174 0c2 0 5 0 7 2 3 2 4 4 5 7l6 18c1 2 0 5-1 6-1 2-3 3-5 3l-174 0c-3 0-5-1-7-3-3-1-4-4-5-6z"},"click":"function(gd) { \n        // is this being viewed in RStudio?\n        if (location.search == '?viewer_pane=1') {\n          alert('To learn about plotly for collaboration, visit:\\n https://cpsievert.github.io/plotly_book/plot-ly-for-collaboration.html');\n        } else {\n          window.open('https://cpsievert.github.io/plotly_book/plot-ly-for-collaboration.html', '_blank');\n        }\n      }"}],"cloud":false},"data":[{"x":[0,1,0,2,0,5,0],"y":[0,2,0,4,0,10,0],"z":[0,3,0,6,0,15,0],"mode":"lines","opacity":1,"line":{"color":["red","red","red","green","green","blue","blue"],"width":6,"opacity":[0.3,0.3,0.3,0.3,0.3,0.3],"reverscale":false},"type":"scatter3d","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(31,119,180,1)"}},"error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"frame":null},{"colorbar":{"title":"z","ticklen":2,"len":0.5,"lenmode":"fraction","y":1,"yanchor":"top"},"colorscale":[["0","rgba(68,1,84,1)"],["0.0364583333333333","rgba(70,17,96,1)"],["0.0729166666666667","rgba(71,29,107,1)"],["0.109375","rgba(72,40,119,1)"],["0.145833333333333","rgba(70,51,125,1)"],["0.182291666666667","rgba(67,62,131,1)"],["0.21875","rgba(62,73,136,1)"],["0.255208333333333","rgba(60,83,139,1)"],["0.291666666666667","rgba(56,93,140,1)"],["0.328125","rgba(50,103,142,1)"],["0.364583333333333","rgba(47,111,142,1)"],["0.427083333333333","rgba(41,126,142,1)"],["0.5","rgba(37,144,140,1)"],["0.572916666666667","rgba(36,162,135,1)"],["0.635416666666667","rgba(49,176,126,1)"],["0.671875","rgba(57,184,120,1)"],["0.708333333333333","rgba(79,191,110,1)"],["0.744791666666667","rgba(96,198,99,1)"],["0.78125","rgba(112,206,88,1)"],["0.817708333333333","rgba(137,211,76,1)"],["0.854166666666667","rgba(160,217,62,1)"],["0.890625","rgba(181,222,44,1)"],["0.927083333333333","rgba(206,225,42,1)"],["0.963541666666667","rgba(230,228,39,1)"],["1","rgba(253,231,37,1)"]],"showscale":true,"x":[0,2,3,1,5,7,8,6],"y":[0,4,6,2,10,14,16,12],"z":[0,6,9,3,15,21,24,18],"mode":"lines","opacity":0.4,"line":{"width":6,"color":["red","red","red","green","green","blue","blue"],"opacity":[0.3,0.3,0.3,0.3,0.3,0.3],"reverscale":false},"type":"mesh3d","i":[0,0,0,0,2,2,1,1,1,1,5,5],"j":[1,3,4,3,6,3,2,5,5,0,6,4],"k":[2,2,7,7,7,7,6,6,4,4,7,7],"facecolor":["orange","orange","orange","orange","orange","orange","orange","orange","orange","orange","orange","orange"],"frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"base_url":"https://plot.ly"},"evals":["config.modeBarButtonsToAdd.0.click"],"jsHooks":[]}</script>
+<p>No, the graph is not wrong. All of the vectors are in the same span.</p>
+<p>And since they are linear dependent, the determinant is 0.</p>
+<p><span class="math display">\[ det(A)\]</span></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">det</span>(A)</code></pre></div>
+<pre><code>## [1] 0</code></pre>
+</div>
+</div>
+<div id="section-1" class="section level2">
+<h2><span class="header-section-number">5.2</span> </h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">A &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">3</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">0</span>),<span class="dv">3</span>)
+eigenObj &lt;-<span class="st"> </span><span class="kw">eigen</span>(A)
+Lambda &lt;-<span class="st"> </span>eigenObj<span class="op">$</span>values<span class="op">*</span><span class="kw">diag</span>(<span class="dv">3</span>)
+P &lt;-<span class="st"> </span>eigenObj<span class="op">$</span>vectors
+Pline &lt;-<span class="st"> </span><span class="kw">t</span>(P)
+
+A.spectralDecomp &lt;-<span class="st"> </span>P<span class="op">%*%</span>(Lambda)<span class="op">%*%</span>Pline
+
+A.spectralDecomp.<span class="dv">2</span> &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">rep</span>(<span class="dv">0</span>,<span class="dv">9</span>),<span class="dv">3</span>)
+
+<span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(Lambda)){
+  A.spectralDecomp.<span class="dv">2</span> =<span class="st"> </span>A.spectralDecomp.<span class="dv">2</span> <span class="op">+</span><span class="st"> </span>eigenObj<span class="op">$</span>values[i]<span class="op">*</span>P[,i]<span class="op">%*%</span><span class="kw">t</span>(P[,i])
+}</code></pre></div>
+</div>
+<div id="section-2" class="section level2">
+<h2><span class="header-section-number">5.3</span> 11</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dados11 &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(readxl<span class="op">::</span><span class="kw">read_xlsx</span>(<span class="kw">file.path</span>(datasetsDir,<span class="st">&quot;..&quot;</span>,<span class="st">&quot;Exercicios&quot;</span>,<span class="st">&quot;exe11.xlsx&quot;</span>), <span class="dt">col_names=</span>F))
+
+<span class="kw">plot</span>(<span class="dt">x=</span>dados11<span class="op">$</span>X__<span class="dv">1</span>,<span class="dt">y=</span>dados11<span class="op">$</span>X__<span class="dv">2</span>)</code></pre></div>
+<p><img src="Multivariate_Stats_files/figure-html/unnamed-chunk-44-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(<span class="dt">x=</span>dados11<span class="op">$</span>X__<span class="dv">1</span>,<span class="dt">y=</span>dados11<span class="op">$</span>X__<span class="dv">3</span>)</code></pre></div>
+<p><img src="Multivariate_Stats_files/figure-html/unnamed-chunk-44-2.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(<span class="dt">x=</span>dados11<span class="op">$</span>X__<span class="dv">2</span>,<span class="dt">y=</span>dados11<span class="op">$</span>X__<span class="dv">3</span>)</code></pre></div>
+<p><img src="Multivariate_Stats_files/figure-html/unnamed-chunk-44-3.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">xbars &lt;-<span class="st"> </span><span class="kw">colMeans</span>(dados11)
+S &lt;-<span class="st"> </span><span class="kw">var</span>(dados11)
+CorrMatrix &lt;-<span class="st"> </span><span class="kw">cor</span>(dados11)</code></pre></div>
+</div>
+<div id="section-3" class="section level2">
+<h2><span class="header-section-number">5.4</span> 12</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dados12 &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(readxl<span class="op">::</span><span class="kw">read_xlsx</span>(<span class="kw">file.path</span>(datasetsDir,<span class="st">&quot;..&quot;</span>,<span class="st">&quot;Exercicios&quot;</span>,<span class="st">&quot;exe12.xlsx&quot;</span>), <span class="dt">col_names=</span>F))
+
+<span class="kw">plot</span>(<span class="dt">x=</span>dados12<span class="op">$</span>X__<span class="dv">1</span>,<span class="dt">y=</span>dados12<span class="op">$</span>X__<span class="dv">2</span>)</code></pre></div>
+<p><img src="Multivariate_Stats_files/figure-html/unnamed-chunk-45-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(<span class="dt">x=</span>dados12<span class="op">$</span>X__<span class="dv">5</span>,<span class="dt">y=</span>dados12<span class="op">$</span>X__<span class="dv">3</span>)</code></pre></div>
+<p><img src="Multivariate_Stats_files/figure-html/unnamed-chunk-45-2.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(<span class="dt">x=</span>dados12<span class="op">$</span>X__<span class="dv">2</span>,<span class="dt">y=</span>dados12<span class="op">$</span>X__<span class="dv">3</span>)</code></pre></div>
+<p><img src="Multivariate_Stats_files/figure-html/unnamed-chunk-45-3.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">xbars &lt;-<span class="st"> </span><span class="kw">colMeans</span>(dados12)
+S &lt;-<span class="st"> </span><span class="kw">var</span>(dados12)
+CorrMatrix &lt;-<span class="st"> </span><span class="kw">cor</span>(dados12)</code></pre></div>
+</div>
+<div id="section-4" class="section level2">
+<h2><span class="header-section-number">5.5</span> 13</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dados13 &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(readxl<span class="op">::</span><span class="kw">read_xlsx</span>(<span class="kw">file.path</span>(datasetsDir,<span class="st">&quot;..&quot;</span>,<span class="st">&quot;Exercicios&quot;</span>,<span class="st">&quot;exe13.xlsx&quot;</span>), <span class="dt">col_names=</span>F))
+
+xs &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>)
+ys &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">4</span>,<span class="dv">5</span>)
+
+xsbar &lt;-<span class="st"> </span><span class="kw">mean</span>(<span class="kw">colMeans</span>(dados13[,xs]))
+ysbar &lt;-<span class="st"> </span><span class="kw">mean</span>(<span class="kw">colMeans</span>(dados13[,ys]))
+
+S &lt;-<span class="st"> </span><span class="kw">var</span>(dados13)
+S11 &lt;-<span class="st"> </span>S[xs,xs]
+S12 &lt;-<span class="st"> </span>S[xs,ys]
+S21 &lt;-<span class="st"> </span>S[ys,xs]
+S22 &lt;-<span class="st"> </span>S[ys,ys]</code></pre></div>
+</div>
+<div id="section-5" class="section level2">
+<h2><span class="header-section-number">5.6</span> 14</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dados13 &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(readxl<span class="op">::</span><span class="kw">read_xlsx</span>(<span class="kw">file.path</span>(datasetsDir,<span class="st">&quot;..&quot;</span>,<span class="st">&quot;Exercicios&quot;</span>,<span class="st">&quot;exe13.xlsx&quot;</span>), <span class="dt">col_names=</span>F))
+
+cLinear &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">3</span>,<span class="op">-</span><span class="dv">2</span>,<span class="dv">4</span>,<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>)
+
+xbar &lt;-<span class="st"> </span><span class="kw">colMeans</span>(dados13)
+S &lt;-<span class="st"> </span><span class="kw">var</span>(dados13)
+R &lt;-<span class="st"> </span><span class="kw">cor</span>(dados13)
+
+zmeans &lt;-<span class="st"> </span><span class="kw">t</span>(cLinear)<span class="op">%*%</span>xbar
+zS &lt;-<span class="st"> </span>cLinear<span class="op">%*%</span>S<span class="op">%*%</span>cLinear
+<span class="co">#z = 3x1 − 2x2 + 4x3 − x4 + x5 .</span>
+
+C &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>,<span class="op">-</span><span class="dv">3</span>,<span class="op">-</span><span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="op">-</span><span class="dv">2</span>,<span class="op">-</span><span class="dv">2</span>,<span class="dv">1</span>,<span class="op">-</span><span class="dv">1</span>,<span class="dv">3</span>),<span class="dv">3</span>)
+
+z_M_means &lt;-<span class="st"> </span>C<span class="op">%*%</span>xbar
+Sz &lt;-<span class="st"> </span>C<span class="op">%*%</span><span class="kw">var</span>(dados13)<span class="op">%*%</span><span class="kw">t</span>(C)
+
+D &lt;-<span class="st"> </span><span class="kw">sqrt</span>(<span class="kw">diag</span>(Sz))<span class="op">*</span><span class="kw">diag</span>(<span class="dv">3</span>)
+Dinv &lt;-<span class="st"> </span><span class="kw">solve</span>(D)
+
+Ry &lt;-<span class="st"> </span>Dinv<span class="op">%*%</span>Sz<span class="op">%*%</span>Dinv</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="dv">1</span><span class="op">+</span><span class="dv">1</span></code></pre></div>
+
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="exercises-1.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

@@ -1,0 +1,89 @@
+---
+title: "Computational Stats"
+site: bookdown::bookdown_site
+---
+
+```{r include = FALSE}
+PROJHOME <- "/Users/tiago.correia/courses/MestradoBigData/EstatisticaMultivariada"
+datasetsDir=file.path(PROJHOME,"datasets")
+```
+
+
+# Lesson 4
+
+## Slide 9 exercice
+
+```{r}
+
+X = matrix(c(6,10,8,9,6,3),3)
+
+X.mean <- colMeans(X)
+X.S <- var(X) #covariance matrix
+
+X.Sinv <- solve(X.S)
+
+TSquare_Hotelling <- function(hypothesis,n,vectorMean,covInverse){
+  n*t((vectorMean - hypothesis))%*%covInverse%*%(vectorMean - hypothesis)
+}
+
+hypothesis <- c(11,3)
+
+TSquare_Hotelling(hypothesis, nrow(X), X.mean, X.Sinv)
+
+
+```
+
+We do not know the quantiles of the $T^2 Hotelling$, but we know that the function $F$ emulates the $T^2 Hotelling$ and therefore we can do
+
+```{r}
+
+alpha = 0.05
+
+4*qf(1-alpha,2,1)
+
+
+
+
+
+
+```
+
+## Slide 10 exercise
+
+```{r}
+
+dados3 <- as.data.frame(readxl::read_xlsx(file.path(datasetsDir,"data3.xlsx")))
+
+
+# trnasformar dados
+x1 <- dados3[,1]^(1/4)
+x2 <- dados3[,2]^(1/4)
+
+hypothesis <- c(0.562,0.589)
+
+
+  x1<-dados3[,1]^(1/4)
+x2<-dados3[,2]^(1/4)
+x<-matrix(c(x1,x2),42,2)
+m<-colMeans(x)
+s<-var(x)
+hip<-matrix(c(0.562,0.589),2,1)
+#n<-dim(dados3)[1]
+
+
+#T hotelling
+T_qua=nrow(x)*t(m-hip)%*%solve(s)%*%(m-hip)
+T_qua
+vc=((ncol(x)*(nrow(x)-1))/((nrow(x)-ncol(x))))*qf(df1 = ncol(x),df2 = nrow(x)-ncol(x),p = 0.95)  #calculo do valor observado
+round(vc,3)
+
+eigenS <- eigen(s)
+eval <- eigenS$values
+evec <- eigenS$vectors
+
+#vc is valor crítico
+m - sqrt(eval[1])*sqrt(valorCritico)*evec[,1]
+
+  
+```
+

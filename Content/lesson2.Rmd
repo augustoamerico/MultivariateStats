@@ -14,7 +14,7 @@ datasetsDir=file.path(PROJHOME,"datasets")
 
 ### Elements of probability
 
-A random variable $\bold{X}$ is a function that takes an event space and return a value:
+A random variable $\textbf{X}$ is a function that takes an event space and return a value:
 
 $$ X: \Omega \rightarrow {\rm I\!R}$$
 

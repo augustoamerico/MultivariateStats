@@ -1,0 +1,225 @@
+---
+title: "Computational Stats"
+site: bookdown::bookdown_site
+---
+
+```{r include = FALSE}
+PROJHOME <- "/Users/tiago.correia/courses/MestradoBigData/EstatisticaMultivariada"
+datasetsDir=file.path(PROJHOME,"datasets")
+```
+
+
+# Lesson 6
+
+## avaliar a Homocedasticidade das variáveis
+
+```{r}
+
+dados7 <- as.data.frame(readxl::read_xlsx(file.path(datasetsDir, "data7.xlsx"), col_names = F))
+
+colnames(dados7) <- c("G","X1","X2","X3","X4")
+
+S1 <- var(dados7[dados7$G == 1,-1])
+S2 <- var(dados7[dados7$G == 2,-1])
+
+n1 <- sum(dados7$G==1)
+n2 <- sum(dados7$G==2)
+
+#k is the number of groups
+Spooled <- ((n1-1)*S1+(n2-1)*S2)/(n1+n2-2)
+
+num <- det(S1)^((n1-1)/2) * det(S2)^((n2-1)/2)
+
+den <- det(Spooled)^((n1+n2-2)/2)
+
+lambda <- num/den
+
+p <- dim(dados7[,-1])[2]
+g <- length(unique(dados7$G))
+ni <- c(n1,n2)
+
+c1 <- (sum(1/(ni-1)) - 1/(sum(ni-1)))*((2*p^2 + 3*p - 1)/(6*(p+1)*(g-1)))
+
+Ustar <- -2*(1-c1)*log(lambda)
+
+```
+
+We know that the transformation $-2(1 - c1)ln\Lambda$ follows a $\chi^2_{(g-1)(p+1)}$
+
+```{r}
+
+qchisq(0.95, g-1, p+1)
+
+```
+
+Therefore we do not reject H0.
+
+All automated now!
+```{r}
+biotools::boxM(data= dados7[,-1], grouping = dados7$G)
+```
+
+## Contrast Matrix
+
+```{r}
+data <- matrix(c(30,21,21,14,22,13,22,5,20,13,18,17,12,7,16,14,23,24,23,8),5,byrow = T)
+n <- dim(data)[1]
+q <- dim(data)[2]
+
+C <- matrix(c(1,1,-1,-1,1,-1,1,-1,1,-1,-1,1),3,byrow=T)
+
+S <- var(data)
+
+xbar <- colMeans(data)
+
+Tsqrt <- n*t(C%*%xbar)%*%solve(C%*%S%*%t(C))%*%(C%*%xbar)
+
+## Now transforming from T^2 to F by
+
+FtoTsqrt <- ((n-1)*(q-1))/(n-q+1)
+criticRegion <- FtoTsqrt*qf(0.95,q-1,n-q+1)
+
+
+```
+
+```{r}
+library(plotly)
+dados7 <- as.data.frame(readxl::read_xlsx(file.path(datasetsDir, "data7.xlsx"), col_names = F))
+
+colnames(dados7) <- c("G","X1","X2","X3","X4")
+
+
+alpha <- 0.01
+significanceLevel <- 1 - alpha
+
+G1 <- dados7[dados7$G == 1,-1]
+G2 <- dados7[dados7$G == 2,-1]
+G1.colmeans <- colMeans(G1)
+G1.n <- dim(G1)[1]
+G2.colmeans <- colMeans(G2)
+G2.n <- dim(G2)[1]
+
+
+
+plotly::plot_ly(
+  data=G1,
+   y=~G1.colmeans,
+   x=~1:length(G1.colmeans),
+   type="scatter",
+   mode="lines",
+  name="group1"
+) %>% plotly::add_lines(
+  data=G2,
+   y=~G2.colmeans,
+   x=~1:length(G2.colmeans),
+  name="group2"
+) %>% plotly::layout(
+  yaxis=list(title="Statistic"),
+  xaxis=list(title="Psy-Indicators")
+)
+
+G1.S <- var(dados7[dados7$G == 1,-1])
+G2.S <- var(dados7[dados7$G == 2,-1])
+
+C <- matrix(c(-1,1,0,0,0,-1,1,0,0,0,-1,1),3,byrow=T)
+
+
+Spooled <- ((G1.n - 1)*G1.S+(G2.n - 1)*G2.S)/((G1.n-1)+(G2.n-1))
+
+f1 <- t(C%*%(G1.colmeans-G2.colmeans))
+f2 <- solve((1/G1.n + 1/G2.n)*C%*%Spooled%*%t(C))
+f3 <- t(f1)
+
+Tsqrt <- f1%*%f2%*%f3
+
+#T^2_{q-1}(n-2)
+n <- dim(dados7)[1]
+q <- dim(dados7)[2]
+FtoTsqrt <- ((n-1)*(q-1))/(n-q+1)
+criticRegion <- FtoTsqrt*qf(significanceLevel,q-1,n-q+1)
+
+p_value <- 1-(pf(Tsqrt/FtoTsqrt,3,n-q+1))
+
+```
+
+
+## Discriminant Analysis
+
+Assumption:
+
+1. The groups (with mean vectors $\mu_1$ and $\mu_2$) have the same covariance matrix
+
+
+```{r}
+
+data <- as.data.frame(matrix(c(33,60,36,61,35,64,38,63,40,65,35,57,36,59,38,59,39,61,41,63,43,65,41,59),12,byrow=T))
+
+n1 <- 5
+n2 <- 7
+data$G <- c(rep(1,n1),rep(2,n2))
+
+xbar_g1 <- colMeans(data[data$G == 1,c(1,2)])
+xbar_g2 <- colMeans(data[data$G == 2,c(1,2)])
+
+S1 <- var(data[data$G == 1,c(1,2)])
+S2 <- var(data[data$G == 2,c(1,2)])
+
+Spooled <- ((n1-1)*S1 + (n2-1)*S2)/((n1-1)+(n2-1))
+
+a <- solve(Spooled)%*%(xbar_g1 - xbar_g2)
+
+
+```
+
+
+```{r}
+
+c1 <- c(-2,0,-1,0,2,1,1,0,-1)
+c2 <- c(5,3,1,6,4,2,-2,0,-4)
+groups <- c(1,2,3)
+G <- rep(groups,each=3)
+X <- data.frame(cbind(G,c1,c2))
+n <- dim(X)[1]
+
+S <- var(X[,-1])
+Slist <- lapply(groups, function(group){
+  var(X[X$G==group,-1])
+})
+
+nlist <- lapply(groups, function(group){
+  dim(X[X$G==group,-1])[1]
+})
+
+T <- (n-1)*S
+W <- matrix(c(0,0,0,0),2)
+for(i in 1:length(nlist)){
+  W = W + (nlist[[i]]-1)*Slist[[i]]
+}
+
+B <- T - W
+
+
+#UNFINISHED! AND MAYBE WRONG
+
+
+```
+
+
+```{r}
+
+library("MASS")
+
+wine<-read.table("http://archive.ics.uci.edu/ml/machine-learning-databases/wine/wine.data",sep=",")
+
+wine.lda <- lda(wine$V1 ~ wine$V2 + wine$V3 + wine$V4 + wine$V5 + wine$V6 + wine$V7 + wine$V8 + wine$V9 + wine$V10 + wine$V11 + wine$V12 + wine$V13 +wine$V14)
+
+wine.lda$scaling
+
+wine.lda.values <- predict(wine.lda, wine[2:14])
+
+ldahist(data = wine.lda.values$x[,1], g=wine$V1)
+ldahist(data = wine.lda.values$x[,2], g=wine$V1)
+
+plot(wine.lda.values$x[,1],wine.lda.values$x[,2],xlab = "LD1",ylab = "LD2", col=wine$V1,pch=16)
+
+```
