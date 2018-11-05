@@ -25,7 +25,7 @@
 <meta name="author" content="Tiago dos Santos">
 
 
-<meta name="date" content="2018-10-29">
+<meta name="date" content="2018-11-05">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -33,7 +33,7 @@
   
   
 <link rel="prev" href="lesson-6.html">
-<link rel="next" href="studies-experiments.html">
+<link rel="next" href="lesson-8.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -47,13 +47,20 @@
 
 
 
-<script src="libs/htmlwidgets-1.2/htmlwidgets.js"></script>
+<script src="libs/htmlwidgets-1.3/htmlwidgets.js"></script>
 <script src="libs/plotly-binding-4.8.0/plotly.js"></script>
 <script src="libs/typedarray-0.1/typedarray.min.js"></script>
 <link href="libs/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet" />
 <script src="libs/crosstalk-1.0.0/js/crosstalk.min.js"></script>
 <link href="libs/plotly-htmlwidgets-css-1.39.2/plotly-htmlwidgets.css" rel="stylesheet" />
 <script src="libs/plotly-main-1.39.2/plotly-latest.min.js"></script>
+<script src="libs/d3-3.5.9/d3.min.js"></script>
+<link href="libs/d3scatter-0.0.0/d3scatter.css" rel="stylesheet" />
+<script src="libs/d3scatter-0.0.0/d3scatter.js"></script>
+<script src="libs/d3scatter-binding-0.1.0/d3scatter.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="libs/bootstrap-3.3.2/css/bootstrap.min.css" rel="stylesheet" />
+<script src="libs/bootstrap-3.3.2/js/bootstrap.min.js"></script>
 
 
 <style type="text/css">
@@ -144,35 +151,39 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="6.1" data-path="lesson-7.html"><a href="lesson-7.html#analise-de-discriminantes"><i class="fa fa-check"></i><b>6.1</b> Análise de Discriminantes</a></li>
 <li class="chapter" data-level="6.2" data-path="lesson-7.html"><a href="lesson-7.html#pca"><i class="fa fa-check"></i><b>6.2</b> PCA</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="studies-experiments.html"><a href="studies-experiments.html"><i class="fa fa-check"></i><b>7</b> Studies &amp; Experiments</a><ul>
-<li class="chapter" data-level="7.1" data-path="studies-experiments.html"><a href="studies-experiments.html#matrixes-span-and-determinantes"><i class="fa fa-check"></i><b>7.1</b> Matrixes’ Span and Determinantes</a><ul>
-<li class="chapter" data-level="7.1.1" data-path="studies-experiments.html"><a href="studies-experiments.html#more-that-3d"><i class="fa fa-check"></i><b>7.1.1</b> More that 3D</a></li>
+<li class="chapter" data-level="7" data-path="lesson-8.html"><a href="lesson-8.html"><i class="fa fa-check"></i><b>7</b> Lesson 8</a><ul>
+<li class="chapter" data-level="7.0.1" data-path="lesson-8.html"><a href="lesson-8.html#aplying-the-maunchly-test-sphericity-test"><i class="fa fa-check"></i><b>7.0.1</b> Aplying the Maunchly Test / Sphericity Test</a></li>
+<li class="chapter" data-level="7.0.2" data-path="lesson-8.html"><a href="lesson-8.html#now-automated-with-r-code"><i class="fa fa-check"></i><b>7.0.2</b> Now automated with R code</a></li>
 </ul></li>
-<li class="chapter" data-level="7.2" data-path="studies-experiments.html"><a href="studies-experiments.html#eigenvalues-and-eigenvectors"><i class="fa fa-check"></i><b>7.2</b> EigenValues and EigenVectors</a><ul>
-<li class="chapter" data-level="7.2.1" data-path="studies-experiments.html"><a href="studies-experiments.html#eigen-values"><i class="fa fa-check"></i><b>7.2.1</b> Eigen Values</a></li>
-<li class="chapter" data-level="7.2.2" data-path="studies-experiments.html"><a href="studies-experiments.html#eigen-vectores"><i class="fa fa-check"></i><b>7.2.2</b> Eigen Vectores</a></li>
+<li class="chapter" data-level="8" data-path="studies-experiments.html"><a href="studies-experiments.html"><i class="fa fa-check"></i><b>8</b> Studies &amp; Experiments</a><ul>
+<li class="chapter" data-level="8.1" data-path="studies-experiments.html"><a href="studies-experiments.html#matrixes-span-and-determinantes"><i class="fa fa-check"></i><b>8.1</b> Matrixes’ Span and Determinantes</a><ul>
+<li class="chapter" data-level="8.1.1" data-path="studies-experiments.html"><a href="studies-experiments.html#more-that-3d"><i class="fa fa-check"></i><b>8.1.1</b> More that 3D</a></li>
 </ul></li>
-<li class="chapter" data-level="7.3" data-path="studies-experiments.html"><a href="studies-experiments.html#spectral-decomposition"><i class="fa fa-check"></i><b>7.3</b> Spectral Decomposition</a></li>
+<li class="chapter" data-level="8.2" data-path="studies-experiments.html"><a href="studies-experiments.html#eigenvalues-and-eigenvectors"><i class="fa fa-check"></i><b>8.2</b> EigenValues and EigenVectors</a><ul>
+<li class="chapter" data-level="8.2.1" data-path="studies-experiments.html"><a href="studies-experiments.html#eigen-values"><i class="fa fa-check"></i><b>8.2.1</b> Eigen Values</a></li>
+<li class="chapter" data-level="8.2.2" data-path="studies-experiments.html"><a href="studies-experiments.html#eigen-vectores"><i class="fa fa-check"></i><b>8.2.2</b> Eigen Vectores</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="exercises-1.html"><a href="exercises-1.html"><i class="fa fa-check"></i><b>8</b> Exercises</a></li>
-<li class="chapter" data-level="9" data-path="exercise.html"><a href="exercise.html"><i class="fa fa-check"></i><b>9</b> Exercise</a><ul>
-<li class="chapter" data-level="9.1" data-path="exercise.html"><a href="exercise.html#exercise-1---linear-algebra"><i class="fa fa-check"></i><b>9.1</b> Exercise 1 - Linear Algebra</a><ul>
-<li class="chapter" data-level="9.1.1" data-path="exercise.html"><a href="exercise.html#ex-1"><i class="fa fa-check"></i><b>9.1.1</b> Ex 1</a></li>
-<li class="chapter" data-level="9.1.2" data-path="exercise.html"><a href="exercise.html#ex-2"><i class="fa fa-check"></i><b>9.1.2</b> Ex 2</a></li>
-<li class="chapter" data-level="9.1.3" data-path="exercise.html"><a href="exercise.html#ex-3"><i class="fa fa-check"></i><b>9.1.3</b> Ex 3</a></li>
+<li class="chapter" data-level="8.3" data-path="studies-experiments.html"><a href="studies-experiments.html#spectral-decomposition"><i class="fa fa-check"></i><b>8.3</b> Spectral Decomposition</a></li>
 </ul></li>
-<li class="chapter" data-level="9.2" data-path="exercise.html"><a href="exercise.html#section-1"><i class="fa fa-check"></i><b>9.2</b> </a></li>
-<li class="chapter" data-level="9.3" data-path="exercise.html"><a href="exercise.html#section-2"><i class="fa fa-check"></i><b>9.3</b> 11</a></li>
-<li class="chapter" data-level="9.4" data-path="exercise.html"><a href="exercise.html#section-3"><i class="fa fa-check"></i><b>9.4</b> 12</a></li>
-<li class="chapter" data-level="9.5" data-path="exercise.html"><a href="exercise.html#section-4"><i class="fa fa-check"></i><b>9.5</b> 13</a></li>
-<li class="chapter" data-level="9.6" data-path="exercise.html"><a href="exercise.html#section-5"><i class="fa fa-check"></i><b>9.6</b> 14</a></li>
-<li class="chapter" data-level="9.7" data-path="exercise.html"><a href="exercise.html#section-6"><i class="fa fa-check"></i><b>9.7</b> 15</a></li>
-<li class="chapter" data-level="9.8" data-path="exercise.html"><a href="exercise.html#section-7"><i class="fa fa-check"></i><b>9.8</b> 16</a></li>
-<li class="chapter" data-level="9.9" data-path="exercise.html"><a href="exercise.html#section-8"><i class="fa fa-check"></i><b>9.9</b> 17</a></li>
-<li class="chapter" data-level="9.10" data-path="exercise.html"><a href="exercise.html#section-9"><i class="fa fa-check"></i><b>9.10</b> 18</a></li>
-<li class="chapter" data-level="9.11" data-path="exercise.html"><a href="exercise.html#section-10"><i class="fa fa-check"></i><b>9.11</b> 19</a></li>
-<li class="chapter" data-level="9.12" data-path="exercise.html"><a href="exercise.html#section-11"><i class="fa fa-check"></i><b>9.12</b> 24</a></li>
-<li class="chapter" data-level="9.13" data-path="exercise.html"><a href="exercise.html#section-12"><i class="fa fa-check"></i><b>9.13</b> 25</a></li>
+<li class="chapter" data-level="9" data-path="exercises-1.html"><a href="exercises-1.html"><i class="fa fa-check"></i><b>9</b> Exercises</a></li>
+<li class="chapter" data-level="10" data-path="exercise.html"><a href="exercise.html"><i class="fa fa-check"></i><b>10</b> Exercise</a><ul>
+<li class="chapter" data-level="10.1" data-path="exercise.html"><a href="exercise.html#exercise-1---linear-algebra"><i class="fa fa-check"></i><b>10.1</b> Exercise 1 - Linear Algebra</a><ul>
+<li class="chapter" data-level="10.1.1" data-path="exercise.html"><a href="exercise.html#ex-1"><i class="fa fa-check"></i><b>10.1.1</b> Ex 1</a></li>
+<li class="chapter" data-level="10.1.2" data-path="exercise.html"><a href="exercise.html#ex-2"><i class="fa fa-check"></i><b>10.1.2</b> Ex 2</a></li>
+<li class="chapter" data-level="10.1.3" data-path="exercise.html"><a href="exercise.html#ex-3"><i class="fa fa-check"></i><b>10.1.3</b> Ex 3</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="exercise.html"><a href="exercise.html#section-1"><i class="fa fa-check"></i><b>10.2</b> </a></li>
+<li class="chapter" data-level="10.3" data-path="exercise.html"><a href="exercise.html#section-2"><i class="fa fa-check"></i><b>10.3</b> 11</a></li>
+<li class="chapter" data-level="10.4" data-path="exercise.html"><a href="exercise.html#section-3"><i class="fa fa-check"></i><b>10.4</b> 12</a></li>
+<li class="chapter" data-level="10.5" data-path="exercise.html"><a href="exercise.html#section-4"><i class="fa fa-check"></i><b>10.5</b> 13</a></li>
+<li class="chapter" data-level="10.6" data-path="exercise.html"><a href="exercise.html#section-5"><i class="fa fa-check"></i><b>10.6</b> 14</a></li>
+<li class="chapter" data-level="10.7" data-path="exercise.html"><a href="exercise.html#section-6"><i class="fa fa-check"></i><b>10.7</b> 15</a></li>
+<li class="chapter" data-level="10.8" data-path="exercise.html"><a href="exercise.html#section-7"><i class="fa fa-check"></i><b>10.8</b> 16</a></li>
+<li class="chapter" data-level="10.9" data-path="exercise.html"><a href="exercise.html#section-8"><i class="fa fa-check"></i><b>10.9</b> 17</a></li>
+<li class="chapter" data-level="10.10" data-path="exercise.html"><a href="exercise.html#section-9"><i class="fa fa-check"></i><b>10.10</b> 18</a></li>
+<li class="chapter" data-level="10.11" data-path="exercise.html"><a href="exercise.html#section-10"><i class="fa fa-check"></i><b>10.11</b> 19</a></li>
+<li class="chapter" data-level="10.12" data-path="exercise.html"><a href="exercise.html#section-11"><i class="fa fa-check"></i><b>10.12</b> 24</a></li>
+<li class="chapter" data-level="10.13" data-path="exercise.html"><a href="exercise.html#section-12"><i class="fa fa-check"></i><b>10.13</b> 25</a></li>
 </ul></li>
 </ul>
 
@@ -383,8 +394,8 @@ knitr<span class="op">::</span><span class="kw">kable</span>(eigenAnalysis)</cod
     eigenAnalysis, <span class="dt">x=</span><span class="op">~</span>CP, <span class="dt">y=</span><span class="op">~</span>Prop_cum, <span class="dt">type=</span><span class="st">&quot;scatter&quot;</span>, <span class="dt">mode=</span><span class="st">&quot;lines+markers&quot;</span>, <span class="dt">name=</span><span class="st">&quot;Cum Importance&quot;</span>
   )
 )</code></pre></div>
-<div id="htmlwidget-c9ff2eea6989e975f362" style="width:672px;height:480px;" class="plotly html-widget"></div>
-<script type="application/json" data-for="htmlwidget-c9ff2eea6989e975f362">{"x":{"data":[{"x":[1,2,3,4,5,6],"y":[2.568,1.369,0.934,0.678,0.321,0.131],"mode":"lines+markers","name":"Scree Plot","type":"scatter","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(31,119,180,1)"}},"error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"line":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[1,2,3,4,5,6],"y":[0.428,0.656,0.812,0.925,0.978,1],"mode":"lines+markers","name":"Cum Importance","type":"scatter","marker":{"color":"rgba(255,127,14,1)","line":{"color":"rgba(255,127,14,1)"}},"error_y":{"color":"rgba(255,127,14,1)"},"error_x":{"color":"rgba(255,127,14,1)"},"line":{"color":"rgba(255,127,14,1)"},"xaxis":"x2","yaxis":"y2","frame":null}],"layout":{"xaxis":{"domain":[0,0.48],"automargin":true,"anchor":"y"},"xaxis2":{"domain":[0.52,1],"automargin":true,"anchor":"y2"},"yaxis2":{"domain":[0,1],"automargin":true,"anchor":"x2"},"yaxis":{"domain":[0,1],"automargin":true,"anchor":"x"},"margin":{"b":40,"l":60,"t":25,"r":10},"hovermode":"closest","showlegend":true},"attrs":{"11c5a2cad943":{"x":{},"y":{},"mode":"lines+markers","name":"Scree Plot","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter"},"11c5a537dbf23":{"x":{},"y":{},"mode":"lines+markers","name":"Cum Importance","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter"}},"source":"A","config":{"modeBarButtonsToAdd":[{"name":"Collaborate","icon":{"width":1000,"ascent":500,"descent":-50,"path":"M487 375c7-10 9-23 5-36l-79-259c-3-12-11-23-22-31-11-8-22-12-35-12l-263 0c-15 0-29 5-43 15-13 10-23 23-28 37-5 13-5 25-1 37 0 0 0 3 1 7 1 5 1 8 1 11 0 2 0 4-1 6 0 3-1 5-1 6 1 2 2 4 3 6 1 2 2 4 4 6 2 3 4 5 5 7 5 7 9 16 13 26 4 10 7 19 9 26 0 2 0 5 0 9-1 4-1 6 0 8 0 2 2 5 4 8 3 3 5 5 5 7 4 6 8 15 12 26 4 11 7 19 7 26 1 1 0 4 0 9-1 4-1 7 0 8 1 2 3 5 6 8 4 4 6 6 6 7 4 5 8 13 13 24 4 11 7 20 7 28 1 1 0 4 0 7-1 3-1 6-1 7 0 2 1 4 3 6 1 1 3 4 5 6 2 3 3 5 5 6 1 2 3 5 4 9 2 3 3 7 5 10 1 3 2 6 4 10 2 4 4 7 6 9 2 3 4 5 7 7 3 2 7 3 11 3 3 0 8 0 13-1l0-1c7 2 12 2 14 2l218 0c14 0 25-5 32-16 8-10 10-23 6-37l-79-259c-7-22-13-37-20-43-7-7-19-10-37-10l-248 0c-5 0-9-2-11-5-2-3-2-7 0-12 4-13 18-20 41-20l264 0c5 0 10 2 16 5 5 3 8 6 10 11l85 282c2 5 2 10 2 17 7-3 13-7 17-13z m-304 0c-1-3-1-5 0-7 1-1 3-2 6-2l174 0c2 0 4 1 7 2 2 2 4 4 5 7l6 18c0 3 0 5-1 7-1 1-3 2-6 2l-173 0c-3 0-5-1-8-2-2-2-4-4-4-7z m-24-73c-1-3-1-5 0-7 2-2 3-2 6-2l174 0c2 0 5 0 7 2 3 2 4 4 5 7l6 18c1 2 0 5-1 6-1 2-3 3-5 3l-174 0c-3 0-5-1-7-3-3-1-4-4-5-6z"},"click":"function(gd) { \n        // is this being viewed in RStudio?\n        if (location.search == '?viewer_pane=1') {\n          alert('To learn about plotly for collaboration, visit:\\n https://cpsievert.github.io/plotly_book/plot-ly-for-collaboration.html');\n        } else {\n          window.open('https://cpsievert.github.io/plotly_book/plot-ly-for-collaboration.html', '_blank');\n        }\n      }"}],"cloud":false},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"subplot":true,"base_url":"https://plot.ly"},"evals":["config.modeBarButtonsToAdd.0.click"],"jsHooks":[]}</script>
+<div id="htmlwidget-48907595fac0da7d9c8e" style="width:672px;height:480px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-48907595fac0da7d9c8e">{"x":{"data":[{"x":[1,2,3,4,5,6],"y":[2.568,1.369,0.934,0.678,0.321,0.131],"mode":"lines+markers","name":"Scree Plot","type":"scatter","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(31,119,180,1)"}},"error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"line":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[1,2,3,4,5,6],"y":[0.428,0.656,0.812,0.925,0.978,1],"mode":"lines+markers","name":"Cum Importance","type":"scatter","marker":{"color":"rgba(255,127,14,1)","line":{"color":"rgba(255,127,14,1)"}},"error_y":{"color":"rgba(255,127,14,1)"},"error_x":{"color":"rgba(255,127,14,1)"},"line":{"color":"rgba(255,127,14,1)"},"xaxis":"x2","yaxis":"y2","frame":null}],"layout":{"xaxis":{"domain":[0,0.48],"automargin":true,"anchor":"y"},"xaxis2":{"domain":[0.52,1],"automargin":true,"anchor":"y2"},"yaxis2":{"domain":[0,1],"automargin":true,"anchor":"x2"},"yaxis":{"domain":[0,1],"automargin":true,"anchor":"x"},"margin":{"b":40,"l":60,"t":25,"r":10},"hovermode":"closest","showlegend":true},"attrs":{"9cd43eaaa21f":{"x":{},"y":{},"mode":"lines+markers","name":"Scree Plot","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter"},"9cd43479c15d":{"x":{},"y":{},"mode":"lines+markers","name":"Cum Importance","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter"}},"source":"A","config":{"modeBarButtonsToAdd":[{"name":"Collaborate","icon":{"width":1000,"ascent":500,"descent":-50,"path":"M487 375c7-10 9-23 5-36l-79-259c-3-12-11-23-22-31-11-8-22-12-35-12l-263 0c-15 0-29 5-43 15-13 10-23 23-28 37-5 13-5 25-1 37 0 0 0 3 1 7 1 5 1 8 1 11 0 2 0 4-1 6 0 3-1 5-1 6 1 2 2 4 3 6 1 2 2 4 4 6 2 3 4 5 5 7 5 7 9 16 13 26 4 10 7 19 9 26 0 2 0 5 0 9-1 4-1 6 0 8 0 2 2 5 4 8 3 3 5 5 5 7 4 6 8 15 12 26 4 11 7 19 7 26 1 1 0 4 0 9-1 4-1 7 0 8 1 2 3 5 6 8 4 4 6 6 6 7 4 5 8 13 13 24 4 11 7 20 7 28 1 1 0 4 0 7-1 3-1 6-1 7 0 2 1 4 3 6 1 1 3 4 5 6 2 3 3 5 5 6 1 2 3 5 4 9 2 3 3 7 5 10 1 3 2 6 4 10 2 4 4 7 6 9 2 3 4 5 7 7 3 2 7 3 11 3 3 0 8 0 13-1l0-1c7 2 12 2 14 2l218 0c14 0 25-5 32-16 8-10 10-23 6-37l-79-259c-7-22-13-37-20-43-7-7-19-10-37-10l-248 0c-5 0-9-2-11-5-2-3-2-7 0-12 4-13 18-20 41-20l264 0c5 0 10 2 16 5 5 3 8 6 10 11l85 282c2 5 2 10 2 17 7-3 13-7 17-13z m-304 0c-1-3-1-5 0-7 1-1 3-2 6-2l174 0c2 0 4 1 7 2 2 2 4 4 5 7l6 18c0 3 0 5-1 7-1 1-3 2-6 2l-173 0c-3 0-5-1-8-2-2-2-4-4-4-7z m-24-73c-1-3-1-5 0-7 2-2 3-2 6-2l174 0c2 0 5 0 7 2 3 2 4 4 5 7l6 18c1 2 0 5-1 6-1 2-3 3-5 3l-174 0c-3 0-5-1-7-3-3-1-4-4-5-6z"},"click":"function(gd) { \n        // is this being viewed in RStudio?\n        if (location.search == '?viewer_pane=1') {\n          alert('To learn about plotly for collaboration, visit:\\n https://cpsievert.github.io/plotly_book/plot-ly-for-collaboration.html');\n        } else {\n          window.open('https://cpsievert.github.io/plotly_book/plot-ly-for-collaboration.html', '_blank');\n        }\n      }"}],"cloud":false},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"subplot":true,"base_url":"https://plot.ly"},"evals":["config.modeBarButtonsToAdd.0.click"],"jsHooks":[]}</script>
 </div>
 </div>
             </section>
@@ -393,7 +404,7 @@ knitr<span class="op">::</span><span class="kw">kable</span>(eigenAnalysis)</cod
         </div>
       </div>
 <a href="lesson-6.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="studies-experiments.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="lesson-8.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
