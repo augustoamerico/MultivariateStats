@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Multivariate Stats</title>
+  <meta name="description" content="The captain’s log of Multivariate Stats">
+  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Multivariate Stats" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="The captain’s log of Multivariate Stats" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Multivariate Stats" />
+  
+  <meta name="twitter:description" content="The captain’s log of Multivariate Stats" />
+  
+
+<meta name="author" content="Tiago dos Santos">
+
+
+<meta name="date" content="2018-11-05">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="lesson-6.html">
+<link rel="next" href="lesson-8.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+<script src="libs/htmlwidgets-1.3/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.8.0/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.0.0/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-1.39.2/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-1.39.2/plotly-latest.min.js"></script>
+<script src="libs/d3-3.5.9/d3.min.js"></script>
+<link href="libs/d3scatter-0.0.0/d3scatter.css" rel="stylesheet" />
+<script src="libs/d3scatter-0.0.0/d3scatter.js"></script>
+<script src="libs/d3scatter-binding-0.1.0/d3scatter.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="libs/bootstrap-3.3.2/css/bootstrap.min.css" rel="stylesheet" />
+<script src="libs/bootstrap-3.3.2/js/bootstrap.min.js"></script>
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Lesson 2</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#random-variables-and-vectors"><i class="fa fa-check"></i><b>1.1</b> Random Variables and Vectors</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="index.html"><a href="index.html#elements-of-probability"><i class="fa fa-check"></i><b>1.1.1</b> Elements of probability</a></li>
+<li class="chapter" data-level="1.1.2" data-path="index.html"><a href="index.html#section"><i class="fa fa-check"></i><b>1.1.2</b> </a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#variance-and-corrected-variance"><i class="fa fa-check"></i><b>1.2</b> Variance and Corrected Variance</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="index.html"><a href="index.html#variance"><i class="fa fa-check"></i><b>1.2.1</b> Variance</a></li>
+<li class="chapter" data-level="1.2.2" data-path="index.html"><a href="index.html#corrected-variance"><i class="fa fa-check"></i><b>1.2.2</b> Corrected Variance</a></li>
+<li class="chapter" data-level="1.2.3" data-path="index.html"><a href="index.html#covariance"><i class="fa fa-check"></i><b>1.2.3</b> Covariance</a></li>
+<li class="chapter" data-level="1.2.4" data-path="index.html"><a href="index.html#pearson-correlation-coefficient"><i class="fa fa-check"></i><b>1.2.4</b> Pearson Correlation Coefficient</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#exercises"><i class="fa fa-check"></i><b>1.3</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="lesson-3.html"><a href="lesson-3.html"><i class="fa fa-check"></i><b>2</b> Lesson 3</a><ul>
+<li class="chapter" data-level="2.0.1" data-path="lesson-3.html"><a href="lesson-3.html#estatsticas-ordinais"><i class="fa fa-check"></i><b>2.0.1</b> Estat??sticas Ordinais</a></li>
+<li class="chapter" data-level="2.0.2" data-path="lesson-3.html"><a href="lesson-3.html#transforming-to-distance-slide-27"><i class="fa fa-check"></i><b>2.0.2</b> Transforming to Distance (slide 27)</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="lesson-4.html"><a href="lesson-4.html"><i class="fa fa-check"></i><b>3</b> Lesson 4</a><ul>
+<li class="chapter" data-level="3.1" data-path="lesson-4.html"><a href="lesson-4.html#slide-9-exercice"><i class="fa fa-check"></i><b>3.1</b> Slide 9 exercice</a></li>
+<li class="chapter" data-level="3.2" data-path="lesson-4.html"><a href="lesson-4.html#slide-10-exercise"><i class="fa fa-check"></i><b>3.2</b> Slide 10 exercise</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="lesson-5.html"><a href="lesson-5.html"><i class="fa fa-check"></i><b>4</b> Lesson 5</a><ul>
+<li class="chapter" data-level="4.1" data-path="lesson-5.html"><a href="lesson-5.html#anova"><i class="fa fa-check"></i><b>4.1</b> ANOVA</a></li>
+<li class="chapter" data-level="4.2" data-path="lesson-5.html"><a href="lesson-5.html#adding-the-samples-column"><i class="fa fa-check"></i><b>4.2</b> Adding the Samples column</a></li>
+<li class="chapter" data-level="4.3" data-path="lesson-5.html"><a href="lesson-5.html#exercicio-2"><i class="fa fa-check"></i><b>4.3</b> Exercicio 2</a></li>
+<li class="chapter" data-level="4.4" data-path="lesson-5.html"><a href="lesson-5.html#manova"><i class="fa fa-check"></i><b>4.4</b> Manova</a></li>
+<li class="chapter" data-level="4.5" data-path="lesson-5.html"><a href="lesson-5.html#avaliar-a-homocedasticidade-das-variaveis"><i class="fa fa-check"></i><b>4.5</b> avaliar a Homocedasticidade das variáveis</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="lesson-6.html"><a href="lesson-6.html"><i class="fa fa-check"></i><b>5</b> Lesson 6</a><ul>
+<li class="chapter" data-level="5.1" data-path="lesson-6.html"><a href="lesson-6.html#avaliar-a-homocedasticidade-das-variaveis-1"><i class="fa fa-check"></i><b>5.1</b> avaliar a Homocedasticidade das variáveis</a></li>
+<li class="chapter" data-level="5.2" data-path="lesson-6.html"><a href="lesson-6.html#contrast-matrix"><i class="fa fa-check"></i><b>5.2</b> Contrast Matrix</a></li>
+<li class="chapter" data-level="5.3" data-path="lesson-6.html"><a href="lesson-6.html#discriminant-analysis"><i class="fa fa-check"></i><b>5.3</b> Discriminant Analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="lesson-7.html"><a href="lesson-7.html"><i class="fa fa-check"></i><b>6</b> Lesson 7</a><ul>
+<li class="chapter" data-level="6.1" data-path="lesson-7.html"><a href="lesson-7.html#analise-de-discriminantes"><i class="fa fa-check"></i><b>6.1</b> Análise de Discriminantes</a></li>
+<li class="chapter" data-level="6.2" data-path="lesson-7.html"><a href="lesson-7.html#pca"><i class="fa fa-check"></i><b>6.2</b> PCA</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="lesson-8.html"><a href="lesson-8.html"><i class="fa fa-check"></i><b>7</b> Lesson 8</a><ul>
+<li class="chapter" data-level="7.0.1" data-path="lesson-8.html"><a href="lesson-8.html#aplying-the-maunchly-test-sphericity-test"><i class="fa fa-check"></i><b>7.0.1</b> Aplying the Maunchly Test / Sphericity Test</a></li>
+<li class="chapter" data-level="7.0.2" data-path="lesson-8.html"><a href="lesson-8.html#now-automated-with-r-code"><i class="fa fa-check"></i><b>7.0.2</b> Now automated with R code</a></li>
+<li class="chapter" data-level="7.1" data-path="lesson-8.html"><a href="lesson-8.html#interpreting-principal-components"><i class="fa fa-check"></i><b>7.1</b> Interpreting Principal Components</a></li>
+<li class="chapter" data-level="7.2" data-path="lesson-8.html"><a href="lesson-8.html#exercise"><i class="fa fa-check"></i><b>7.2</b> Exercise</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="lesson-8.html"><a href="lesson-8.html#which-pc-do-i-choose-what-is-the-percentage-of-variability-explained-by-each-pc"><i class="fa fa-check"></i><b>7.2.1</b> Which PC do I choose? What is the percentage of variability explained by each PC?</a></li>
+<li class="chapter" data-level="7.2.2" data-path="lesson-8.html"><a href="lesson-8.html#how-to-interpret-the-principal-component"><i class="fa fa-check"></i><b>7.2.2</b> How to interpret the Principal Component?</a></li>
+<li class="chapter" data-level="7.2.3" data-path="lesson-8.html"><a href="lesson-8.html#suitability-analysis"><i class="fa fa-check"></i><b>7.2.3</b> Suitability analysis</a></li>
+<li class="chapter" data-level="7.2.4" data-path="lesson-8.html"><a href="lesson-8.html#calculate-scores"><i class="fa fa-check"></i><b>7.2.4</b> Calculate scores</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="studies-experiments.html"><a href="studies-experiments.html"><i class="fa fa-check"></i><b>8</b> Studies &amp; Experiments</a><ul>
+<li class="chapter" data-level="8.1" data-path="studies-experiments.html"><a href="studies-experiments.html#matrixes-span-and-determinantes"><i class="fa fa-check"></i><b>8.1</b> Matrixes’ Span and Determinantes</a><ul>
+<li class="chapter" data-level="8.1.1" data-path="studies-experiments.html"><a href="studies-experiments.html#more-that-3d"><i class="fa fa-check"></i><b>8.1.1</b> More that 3D</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="studies-experiments.html"><a href="studies-experiments.html#eigenvalues-and-eigenvectors"><i class="fa fa-check"></i><b>8.2</b> EigenValues and EigenVectors</a><ul>
+<li class="chapter" data-level="8.2.1" data-path="studies-experiments.html"><a href="studies-experiments.html#eigen-values"><i class="fa fa-check"></i><b>8.2.1</b> Eigen Values</a></li>
+<li class="chapter" data-level="8.2.2" data-path="studies-experiments.html"><a href="studies-experiments.html#eigen-vectores"><i class="fa fa-check"></i><b>8.2.2</b> Eigen Vectores</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="studies-experiments.html"><a href="studies-experiments.html#spectral-decomposition"><i class="fa fa-check"></i><b>8.3</b> Spectral Decomposition</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="exercises-1.html"><a href="exercises-1.html"><i class="fa fa-check"></i><b>9</b> Exercises</a></li>
+<li class="chapter" data-level="10" data-path="exercise-1.html"><a href="exercise-1.html"><i class="fa fa-check"></i><b>10</b> Exercise</a><ul>
+<li class="chapter" data-level="10.1" data-path="exercise-1.html"><a href="exercise-1.html#exercise-1---linear-algebra"><i class="fa fa-check"></i><b>10.1</b> Exercise 1 - Linear Algebra</a><ul>
+<li class="chapter" data-level="10.1.1" data-path="exercise-1.html"><a href="exercise-1.html#ex-1"><i class="fa fa-check"></i><b>10.1.1</b> Ex 1</a></li>
+<li class="chapter" data-level="10.1.2" data-path="exercise-1.html"><a href="exercise-1.html#ex-2"><i class="fa fa-check"></i><b>10.1.2</b> Ex 2</a></li>
+<li class="chapter" data-level="10.1.3" data-path="exercise-1.html"><a href="exercise-1.html#ex-3"><i class="fa fa-check"></i><b>10.1.3</b> Ex 3</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="exercise-1.html"><a href="exercise-1.html#section-1"><i class="fa fa-check"></i><b>10.2</b> </a></li>
+<li class="chapter" data-level="10.3" data-path="exercise-1.html"><a href="exercise-1.html#section-2"><i class="fa fa-check"></i><b>10.3</b> 11</a></li>
+<li class="chapter" data-level="10.4" data-path="exercise-1.html"><a href="exercise-1.html#section-3"><i class="fa fa-check"></i><b>10.4</b> 12</a></li>
+<li class="chapter" data-level="10.5" data-path="exercise-1.html"><a href="exercise-1.html#section-4"><i class="fa fa-check"></i><b>10.5</b> 13</a></li>
+<li class="chapter" data-level="10.6" data-path="exercise-1.html"><a href="exercise-1.html#section-5"><i class="fa fa-check"></i><b>10.6</b> 14</a></li>
+<li class="chapter" data-level="10.7" data-path="exercise-1.html"><a href="exercise-1.html#section-6"><i class="fa fa-check"></i><b>10.7</b> 15</a></li>
+<li class="chapter" data-level="10.8" data-path="exercise-1.html"><a href="exercise-1.html#section-7"><i class="fa fa-check"></i><b>10.8</b> 16</a></li>
+<li class="chapter" data-level="10.9" data-path="exercise-1.html"><a href="exercise-1.html#section-8"><i class="fa fa-check"></i><b>10.9</b> 17</a></li>
+<li class="chapter" data-level="10.10" data-path="exercise-1.html"><a href="exercise-1.html#section-9"><i class="fa fa-check"></i><b>10.10</b> 18</a></li>
+<li class="chapter" data-level="10.11" data-path="exercise-1.html"><a href="exercise-1.html#section-10"><i class="fa fa-check"></i><b>10.11</b> 19</a></li>
+<li class="chapter" data-level="10.12" data-path="exercise-1.html"><a href="exercise-1.html#section-11"><i class="fa fa-check"></i><b>10.12</b> 24</a></li>
+<li class="chapter" data-level="10.13" data-path="exercise-1.html"><a href="exercise-1.html#section-12"><i class="fa fa-check"></i><b>10.13</b> 25</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Multivariate Stats</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="lesson-7" class="section level1">
+<h1><span class="header-section-number">6</span> Lesson 7</h1>
+<div id="analise-de-discriminantes" class="section level2">
+<h2><span class="header-section-number">6.1</span> Análise de Discriminantes</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">c1 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="op">-</span><span class="dv">2</span>,<span class="dv">0</span>,<span class="op">-</span><span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="op">-</span><span class="dv">1</span>)
+c2 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">5</span>,<span class="dv">3</span>,<span class="dv">1</span>,<span class="dv">6</span>,<span class="dv">4</span>,<span class="dv">2</span>,<span class="op">-</span><span class="dv">2</span>,<span class="dv">0</span>,<span class="op">-</span><span class="dv">4</span>)
+groups &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>)
+G &lt;-<span class="st"> </span><span class="kw">rep</span>(groups,<span class="dt">each=</span><span class="dv">3</span>)
+X &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="kw">cbind</span>(G,c1,c2))
+n &lt;-<span class="st"> </span><span class="kw">dim</span>(X)[<span class="dv">1</span>]
+p &lt;-<span class="st"> </span><span class="kw">dim</span>(X)[<span class="dv">2</span>]<span class="op">-</span><span class="dv">1</span>
+g &lt;-<span class="st"> </span><span class="kw">length</span>(groups)
+
+alpha &lt;-<span class="st"> </span><span class="fl">0.05</span>
+
+S &lt;-<span class="st"> </span><span class="kw">var</span>(X[,<span class="op">-</span><span class="dv">1</span>])
+Slist &lt;-<span class="st"> </span><span class="kw">lapply</span>(groups, <span class="cf">function</span>(group){
+  <span class="kw">var</span>(X[X<span class="op">$</span>G<span class="op">==</span>group,<span class="op">-</span><span class="dv">1</span>])
+})
+
+nlist &lt;-<span class="st"> </span><span class="kw">lapply</span>(groups, <span class="cf">function</span>(group){
+  <span class="kw">dim</span>(X[X<span class="op">$</span>G<span class="op">==</span>group,<span class="op">-</span><span class="dv">1</span>])[<span class="dv">1</span>]
+})
+
+
+
+T &lt;-<span class="st"> </span>(n<span class="op">-</span><span class="dv">1</span>)<span class="op">*</span>S
+
+W &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">rep</span>(<span class="dv">0</span>,p<span class="op">*</span>p),<span class="dv">2</span>)
+<span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(nlist)){
+  W =<span class="st"> </span>W <span class="op">+</span><span class="st"> </span>(nlist[[i]]<span class="op">-</span><span class="dv">1</span>)<span class="op">*</span>Slist[[i]]
+}
+
+Spooled &lt;-<span class="st"> </span>W<span class="op">/</span>(<span class="kw">sum</span>(<span class="kw">unlist</span>(nlist))<span class="op">-</span><span class="kw">length</span>(nlist))
+
+B &lt;-<span class="st"> </span>T <span class="op">-</span><span class="st"> </span>W
+
+eigenDisc &lt;-<span class="st"> </span><span class="kw">eigen</span>(<span class="kw">solve</span>(W)<span class="op">%*%</span>B)</code></pre></div>
+<p>Now we need to understand if the second eigen value is significantly different from 0, and that depends on the variability of the distribution.</p>
+<p>For this, we will use the Wilk’s lambda test stats:</p>
+<p><span class="math display">\[
+ - \left(n-1-\frac{p+g}{2}\right) ln \Lambda^* \approx \chi^2_{p(g-1)}
+\]</span></p>
+<p>And now we want to test <span class="math inline">\(H_0 : \lambda_i = 0(i = 1,...,s)\)</span>, where <span class="math inline">\(s\)</span> is the number of non-null eigen values. We need to test if each eigen value is significantly different than 0.</p>
+<p>Therefore, for the m-esime test we have:</p>
+<p><span class="math display">\[
+ \Lambda^{*}_{m} = \Pi^{s}_{i=m} \frac{1}{1+l_i}
+\]</span></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">nEigen &lt;-<span class="st"> </span><span class="kw">length</span>(eigenDisc<span class="op">$</span>values)
+
+Lw &lt;-<span class="st"> </span><span class="kw">sapply</span>(<span class="dv">1</span><span class="op">:</span>nEigen,<span class="cf">function</span>(idx){
+  <span class="kw">prod</span>(<span class="dv">1</span><span class="op">/</span>(<span class="dv">1</span><span class="op">+</span>eigenDisc<span class="op">$</span>values[idx<span class="op">:</span>nEigen]))
+})
+
+<span class="co">#Critic Values</span>
+CVs &lt;-<span class="st"> </span><span class="kw">sapply</span>(<span class="dv">1</span><span class="op">:</span>nEigen,<span class="cf">function</span>(idx){
+  <span class="kw">qchisq</span>(<span class="fl">0.95</span>,(p<span class="op">-</span>idx<span class="op">+</span><span class="dv">1</span>)<span class="op">*</span>(g<span class="op">-</span>idx))
+})
+
+
+<span class="co">#\left(n-1-\frac{p+g}{2}\right) ln \Lambda^* \approx \chi^2_{p(g-1)}</span>
+
+LwChisqr &lt;-<span class="st"> </span><span class="kw">sapply</span>(Lw,<span class="cf">function</span>(currLw){
+  <span class="op">-</span>(n<span class="op">-</span><span class="dv">1</span><span class="op">-</span>((p<span class="op">+</span>g)<span class="op">/</span><span class="dv">2</span>))<span class="op">*</span><span class="kw">log</span>(currLw)
+})
+
+Lw <span class="op">&gt;</span><span class="st"> </span>CVs</code></pre></div>
+<pre><code>## [1] FALSE FALSE</code></pre>
+<p>Do we reject any test (for critic regions)?</p>
+<ol style="list-style-type: decimal">
+<li>First eigen (0.1357905) VS critic region (9.487729): FALSE</li>
+<li>Second eigen (0.5251115) VS critic region (3.8414588): FALSE</li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pValues &lt;-<span class="st"> </span><span class="kw">sapply</span>(<span class="dv">1</span><span class="op">:</span>nEigen,<span class="cf">function</span>(idx){
+  <span class="dv">1</span><span class="op">-</span><span class="kw">pchisq</span>(Lw[idx],(p<span class="op">-</span>idx<span class="op">+</span><span class="dv">1</span>)<span class="op">*</span>(g<span class="op">-</span>idx))
+})
+
+pValues <span class="op">&lt;</span><span class="st"> </span>alpha</code></pre></div>
+<pre><code>## [1] FALSE FALSE</code></pre>
+<p>Do we reject any test (for p values)?</p>
+<ol style="list-style-type: decimal">
+<li>First eigen (0.9977968) VS critic region (0.05): FALSE</li>
+<li>Second eigen (0.4686694) VS critic region (0.05): FALSE</li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">m &lt;-<span class="st"> </span><span class="kw">aggregate</span>(X[,<span class="dv">2</span><span class="op">:</span><span class="dv">3</span>],<span class="kw">list</span>(X[,<span class="dv">1</span>]),mean)
+
+classifications &lt;-<span class="st"> </span><span class="kw">apply</span>(X,<span class="dv">1</span>,<span class="cf">function</span>(obs){
+  <span class="kw">print</span>(obs)
+  obs &lt;-<span class="st"> </span><span class="kw">unlist</span>(<span class="kw">c</span>(<span class="kw">unname</span>(obs[<span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">3</span>)])))
+  centered &lt;-<span class="st"> </span>obs <span class="op">-</span><span class="st"> </span><span class="kw">as.matrix</span>(m[,<span class="op">-</span><span class="dv">1</span>])
+  dists &lt;-<span class="st"> </span><span class="kw">diag</span>(centered<span class="op">%*%</span><span class="kw">solve</span>(Spooled)<span class="op">%*%</span><span class="kw">t</span>(centered))
+  <span class="kw">return</span>(<span class="kw">which.min</span>(dists))
+})</code></pre></div>
+<pre><code>##  G c1 c2 
+##  1 -2  5 
+##  G c1 c2 
+##  1  0  3 
+##  G c1 c2 
+##  1 -1  1 
+##  G c1 c2 
+##  2  0  6 
+##  G c1 c2 
+##  2  2  4 
+##  G c1 c2 
+##  2  1  2 
+##  G c1 c2 
+##  3  1 -2 
+##  G c1 c2 
+##  3  0  0 
+##  G c1 c2 
+##  3 -1 -4</code></pre>
+</div>
+<div id="pca" class="section level2">
+<h2><span class="header-section-number">6.2</span> PCA</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dados8 &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(readxl<span class="op">::</span><span class="kw">read_xlsx</span>(<span class="kw">file.path</span>(datasetsDir, <span class="st">&quot;data8.xlsx&quot;</span>)))
+dados8.scaled &lt;-<span class="st"> </span><span class="kw">scale</span>(dados8, <span class="dt">center=</span><span class="ot">TRUE</span>,<span class="dt">scale=</span><span class="ot">TRUE</span>)
+S &lt;-<span class="st"> </span><span class="kw">var</span>(dados8.scaled)
+
+<span class="kw">round</span>(S,<span class="dv">3</span>)</code></pre></div>
+<pre><code>##         WDIM CIRCUM  FBEYE  EYEHD  EARHD    JAW
+## WDIM   1.000  0.608  0.361  0.060  0.252  0.605
+## CIRCUM 0.608  1.000  0.733  0.336  0.090  0.410
+## FBEYE  0.361  0.733  1.000  0.014 -0.028  0.311
+## EYEHD  0.060  0.336  0.014  1.000  0.297 -0.079
+## EARHD  0.252  0.090 -0.028  0.297  1.000 -0.090
+## JAW    0.605  0.410  0.311 -0.079 -0.090  1.000</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dados8.eigen &lt;-<span class="st"> </span><span class="kw">eigen</span>(S)
+
+eigenAnalysis =<span class="st"> </span><span class="kw">data.frame</span>(
+  <span class="dt">CP=</span><span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(dados8.eigen<span class="op">$</span>values),
+  <span class="dt">EV=</span> <span class="kw">round</span>(dados8.eigen<span class="op">$</span>values,<span class="dv">3</span>),
+  <span class="dt">Prop_var =</span> <span class="kw">round</span>(dados8.eigen<span class="op">$</span>values <span class="op">/</span><span class="st"> </span><span class="kw">length</span>(dados8.eigen<span class="op">$</span>values),<span class="dv">3</span>),
+  <span class="dt">Prop_cum =</span> <span class="kw">round</span>(<span class="kw">cumsum</span>(dados8.eigen<span class="op">$</span>values <span class="op">/</span><span class="st"> </span><span class="kw">length</span>(dados8.eigen<span class="op">$</span>values)),<span class="dv">3</span>)
+)
+
+knitr<span class="op">::</span><span class="kw">kable</span>(eigenAnalysis)</code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="right">CP</th>
+<th align="right">EV</th>
+<th align="right">Prop_var</th>
+<th align="right">Prop_cum</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">1</td>
+<td align="right">2.568</td>
+<td align="right">0.428</td>
+<td align="right">0.428</td>
+</tr>
+<tr class="even">
+<td align="right">2</td>
+<td align="right">1.369</td>
+<td align="right">0.228</td>
+<td align="right">0.656</td>
+</tr>
+<tr class="odd">
+<td align="right">3</td>
+<td align="right">0.934</td>
+<td align="right">0.156</td>
+<td align="right">0.812</td>
+</tr>
+<tr class="even">
+<td align="right">4</td>
+<td align="right">0.678</td>
+<td align="right">0.113</td>
+<td align="right">0.925</td>
+</tr>
+<tr class="odd">
+<td align="right">5</td>
+<td align="right">0.321</td>
+<td align="right">0.053</td>
+<td align="right">0.978</td>
+</tr>
+<tr class="even">
+<td align="right">6</td>
+<td align="right">0.131</td>
+<td align="right">0.022</td>
+<td align="right">1.000</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">plotly<span class="op">::</span><span class="kw">subplot</span>(
+  plotly<span class="op">::</span><span class="kw">plot_ly</span>(
+    eigenAnalysis, <span class="dt">x=</span><span class="op">~</span>CP, <span class="dt">y=</span><span class="op">~</span>EV, <span class="dt">type=</span><span class="st">&quot;scatter&quot;</span>, <span class="dt">mode=</span><span class="st">&quot;lines+markers&quot;</span>, <span class="dt">name=</span><span class="st">&quot;Scree Plot&quot;</span>
+  ),
+  plotly<span class="op">::</span><span class="kw">plot_ly</span>(
+    eigenAnalysis, <span class="dt">x=</span><span class="op">~</span>CP, <span class="dt">y=</span><span class="op">~</span>Prop_cum, <span class="dt">type=</span><span class="st">&quot;scatter&quot;</span>, <span class="dt">mode=</span><span class="st">&quot;lines+markers&quot;</span>, <span class="dt">name=</span><span class="st">&quot;Cum Importance&quot;</span>
+  )
+)</code></pre></div>
+<div id="htmlwidget-b09dd5da1189d94e46dd" style="width:672px;height:480px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-b09dd5da1189d94e46dd">{"x":{"data":[{"x":[1,2,3,4,5,6],"y":[2.568,1.369,0.934,0.678,0.321,0.131],"mode":"lines+markers","name":"Scree Plot","type":"scatter","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(31,119,180,1)"}},"error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"line":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[1,2,3,4,5,6],"y":[0.428,0.656,0.812,0.925,0.978,1],"mode":"lines+markers","name":"Cum Importance","type":"scatter","marker":{"color":"rgba(255,127,14,1)","line":{"color":"rgba(255,127,14,1)"}},"error_y":{"color":"rgba(255,127,14,1)"},"error_x":{"color":"rgba(255,127,14,1)"},"line":{"color":"rgba(255,127,14,1)"},"xaxis":"x2","yaxis":"y2","frame":null}],"layout":{"xaxis":{"domain":[0,0.48],"automargin":true,"anchor":"y"},"xaxis2":{"domain":[0.52,1],"automargin":true,"anchor":"y2"},"yaxis2":{"domain":[0,1],"automargin":true,"anchor":"x2"},"yaxis":{"domain":[0,1],"automargin":true,"anchor":"x"},"margin":{"b":40,"l":60,"t":25,"r":10},"hovermode":"closest","showlegend":true},"attrs":{"b674467f8ee8":{"x":{},"y":{},"mode":"lines+markers","name":"Scree Plot","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter"},"b674607f4580":{"x":{},"y":{},"mode":"lines+markers","name":"Cum Importance","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter"}},"source":"A","config":{"modeBarButtonsToAdd":[{"name":"Collaborate","icon":{"width":1000,"ascent":500,"descent":-50,"path":"M487 375c7-10 9-23 5-36l-79-259c-3-12-11-23-22-31-11-8-22-12-35-12l-263 0c-15 0-29 5-43 15-13 10-23 23-28 37-5 13-5 25-1 37 0 0 0 3 1 7 1 5 1 8 1 11 0 2 0 4-1 6 0 3-1 5-1 6 1 2 2 4 3 6 1 2 2 4 4 6 2 3 4 5 5 7 5 7 9 16 13 26 4 10 7 19 9 26 0 2 0 5 0 9-1 4-1 6 0 8 0 2 2 5 4 8 3 3 5 5 5 7 4 6 8 15 12 26 4 11 7 19 7 26 1 1 0 4 0 9-1 4-1 7 0 8 1 2 3 5 6 8 4 4 6 6 6 7 4 5 8 13 13 24 4 11 7 20 7 28 1 1 0 4 0 7-1 3-1 6-1 7 0 2 1 4 3 6 1 1 3 4 5 6 2 3 3 5 5 6 1 2 3 5 4 9 2 3 3 7 5 10 1 3 2 6 4 10 2 4 4 7 6 9 2 3 4 5 7 7 3 2 7 3 11 3 3 0 8 0 13-1l0-1c7 2 12 2 14 2l218 0c14 0 25-5 32-16 8-10 10-23 6-37l-79-259c-7-22-13-37-20-43-7-7-19-10-37-10l-248 0c-5 0-9-2-11-5-2-3-2-7 0-12 4-13 18-20 41-20l264 0c5 0 10 2 16 5 5 3 8 6 10 11l85 282c2 5 2 10 2 17 7-3 13-7 17-13z m-304 0c-1-3-1-5 0-7 1-1 3-2 6-2l174 0c2 0 4 1 7 2 2 2 4 4 5 7l6 18c0 3 0 5-1 7-1 1-3 2-6 2l-173 0c-3 0-5-1-8-2-2-2-4-4-4-7z m-24-73c-1-3-1-5 0-7 2-2 3-2 6-2l174 0c2 0 5 0 7 2 3 2 4 4 5 7l6 18c1 2 0 5-1 6-1 2-3 3-5 3l-174 0c-3 0-5-1-7-3-3-1-4-4-5-6z"},"click":"function(gd) { \n        // is this being viewed in RStudio?\n        if (location.search == '?viewer_pane=1') {\n          alert('To learn about plotly for collaboration, visit:\\n https://cpsievert.github.io/plotly_book/plot-ly-for-collaboration.html');\n        } else {\n          window.open('https://cpsievert.github.io/plotly_book/plot-ly-for-collaboration.html', '_blank');\n        }\n      }"}],"cloud":false},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"subplot":true,"base_url":"https://plot.ly"},"evals":["config.modeBarButtonsToAdd.0.click"],"jsHooks":[]}</script>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="lesson-6.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="lesson-8.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

@@ -250,3 +250,120 @@ This means that there is at least one correlation that is significantly differen
 mauchly.test(lm(dados8.scaled~1))
 ```
 
+## Interpreting Principal Components
+
+```{r}
+correlation <- footpca$sdev * footpca$rotation
+cor.sq <- correlation^2
+round(cor.sq,2)
+
+round((footpca$sdev^2)/p,2)
+
+biplot(footpca,cex=0.6)
+
+```
+
+
+## Exercise 
+
+```{r}
+head(MASS::crabs,6)
+
+summary(MASS::crabs)
+
+crabs.prcomp <- prcomp(MASS::crabs[,-seq(1,3)], scale. = TRUE)
+
+crabs.prcomp.variance <- crabs.prcomp$sdev^2
+crabs.eigenValues.cumsum <- cumsum(crabs.prcomp.variance)
+
+crabs.eigen.df = data.frame(
+  CP = 1:length(crabs.eigenValues.cumsum),
+  EV= round(crabs.prcomp.variance,3),
+  Prop_cum = crabs.eigenValues.cumsum/sum(crabs.prcomp.variance)
+)
+```
+
+### Which PC do I choose? What is the percentage of variability explained by each PC?
+
+```{r}
+plotly::subplot(
+  plotly::plot_ly(
+    crabs.eigen.df, x=~CP, y=~EV, type="scatter", mode="lines+markers", name="Scree Plot"
+  ),
+  plotly::plot_ly(
+    crabs.eigen.df, x=~CP, y=~Prop_cum, type="scatter", mode="lines+markers", name="Cum Importance"
+  )
+)
+
+
+```
+
+#### Criterias to choose the PCs
+
+- Maintain PCs up until 80% variability explained
+- 
+
+
+### How to interpret the Principal Component?
+
+```{r}
+corr_between_pc_vars <- (crabs.prcomp$rotation*crabs.prcomp$sdev)
+round(corr_between_pc_vars[,1]^2,3)
+```
+
+### Suitability analysis
+
+```{r}
+crabs.scaled <- as.data.frame(scale(MASS::crabs[,-seq(1,3)], center=TRUE,scale=TRUE))
+
+S <- cov(crabs.scaled)
+
+S>=0.5 # we have (p^2 - p)/2 distinct correlations, and just 3 of them are >= 0.5
+
+carb.partial.cor <- corpcor::cor2pcor(S) 
+carb.partial.cor
+# the values must be interpreted as the percentage of variability left explained by removing the influence of all the other variables
+```
+
+The values must be interpreted as the percentage of variability left explained by removing the influence of all the other variables
+
+#### Sphericity Test
+
+Our $H_0$ is that our correlation matrix is equal to the Identity matrix.
+
+```{r}
+S.det <- det(S)
+S.tr <- psych::tr(S)
+p <- dim(S)[2]
+n <- nrow(MASS::crabs)
+
+U = ((p^p)*S.det) / (S.tr^p)
+
+Lambda <- (S.det^(n/2)) / ((S.tr/p)^(n*p/2))
+Lambda^(2/n)
+
+Ustar <- -(n - 1 - (2*p^2 + p + 2)/(6*p))*log(U)
+
+## Chi sqrt degrees of freedom
+chisqrt.degreesfreedom <- (p*(p+1))/2-1
+
+1 - pchisq(Ustar, chisqrt.degreesfreedom)
+
+```
+
+If done my the R function
+
+```{r}
+mauchly.test(lm(as.matrix(crabs.scaled)~1))
+```
+
+By rejecting $H_0$ we are saying that the are correlations that are significatively different from 0.
+
+### Calculate scores
+
+```{r}
+
+crabs.scores <- as.matrix(MASS::crabs[,-seq(1,3)]) %*% crabs.prcomp$rotation
+
+```
+

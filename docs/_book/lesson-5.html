@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Multivariate Stats</title>
+  <meta name="description" content="The captain’s log of Multivariate Stats">
+  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Multivariate Stats" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="The captain’s log of Multivariate Stats" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Multivariate Stats" />
+  
+  <meta name="twitter:description" content="The captain’s log of Multivariate Stats" />
+  
+
+<meta name="author" content="Tiago dos Santos">
+
+
+<meta name="date" content="2018-11-05">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="lesson-4.html">
+<link rel="next" href="lesson-6.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+<script src="libs/htmlwidgets-1.3/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.8.0/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.0.0/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-1.39.2/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-1.39.2/plotly-latest.min.js"></script>
+<script src="libs/d3-3.5.9/d3.min.js"></script>
+<link href="libs/d3scatter-0.0.0/d3scatter.css" rel="stylesheet" />
+<script src="libs/d3scatter-0.0.0/d3scatter.js"></script>
+<script src="libs/d3scatter-binding-0.1.0/d3scatter.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="libs/bootstrap-3.3.2/css/bootstrap.min.css" rel="stylesheet" />
+<script src="libs/bootstrap-3.3.2/js/bootstrap.min.js"></script>
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Lesson 2</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#random-variables-and-vectors"><i class="fa fa-check"></i><b>1.1</b> Random Variables and Vectors</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="index.html"><a href="index.html#elements-of-probability"><i class="fa fa-check"></i><b>1.1.1</b> Elements of probability</a></li>
+<li class="chapter" data-level="1.1.2" data-path="index.html"><a href="index.html#section"><i class="fa fa-check"></i><b>1.1.2</b> </a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#variance-and-corrected-variance"><i class="fa fa-check"></i><b>1.2</b> Variance and Corrected Variance</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="index.html"><a href="index.html#variance"><i class="fa fa-check"></i><b>1.2.1</b> Variance</a></li>
+<li class="chapter" data-level="1.2.2" data-path="index.html"><a href="index.html#corrected-variance"><i class="fa fa-check"></i><b>1.2.2</b> Corrected Variance</a></li>
+<li class="chapter" data-level="1.2.3" data-path="index.html"><a href="index.html#covariance"><i class="fa fa-check"></i><b>1.2.3</b> Covariance</a></li>
+<li class="chapter" data-level="1.2.4" data-path="index.html"><a href="index.html#pearson-correlation-coefficient"><i class="fa fa-check"></i><b>1.2.4</b> Pearson Correlation Coefficient</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#exercises"><i class="fa fa-check"></i><b>1.3</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="lesson-3.html"><a href="lesson-3.html"><i class="fa fa-check"></i><b>2</b> Lesson 3</a><ul>
+<li class="chapter" data-level="2.0.1" data-path="lesson-3.html"><a href="lesson-3.html#estatsticas-ordinais"><i class="fa fa-check"></i><b>2.0.1</b> Estat??sticas Ordinais</a></li>
+<li class="chapter" data-level="2.0.2" data-path="lesson-3.html"><a href="lesson-3.html#transforming-to-distance-slide-27"><i class="fa fa-check"></i><b>2.0.2</b> Transforming to Distance (slide 27)</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="lesson-4.html"><a href="lesson-4.html"><i class="fa fa-check"></i><b>3</b> Lesson 4</a><ul>
+<li class="chapter" data-level="3.1" data-path="lesson-4.html"><a href="lesson-4.html#slide-9-exercice"><i class="fa fa-check"></i><b>3.1</b> Slide 9 exercice</a></li>
+<li class="chapter" data-level="3.2" data-path="lesson-4.html"><a href="lesson-4.html#slide-10-exercise"><i class="fa fa-check"></i><b>3.2</b> Slide 10 exercise</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="lesson-5.html"><a href="lesson-5.html"><i class="fa fa-check"></i><b>4</b> Lesson 5</a><ul>
+<li class="chapter" data-level="4.1" data-path="lesson-5.html"><a href="lesson-5.html#anova"><i class="fa fa-check"></i><b>4.1</b> ANOVA</a></li>
+<li class="chapter" data-level="4.2" data-path="lesson-5.html"><a href="lesson-5.html#adding-the-samples-column"><i class="fa fa-check"></i><b>4.2</b> Adding the Samples column</a></li>
+<li class="chapter" data-level="4.3" data-path="lesson-5.html"><a href="lesson-5.html#exercicio-2"><i class="fa fa-check"></i><b>4.3</b> Exercicio 2</a></li>
+<li class="chapter" data-level="4.4" data-path="lesson-5.html"><a href="lesson-5.html#manova"><i class="fa fa-check"></i><b>4.4</b> Manova</a></li>
+<li class="chapter" data-level="4.5" data-path="lesson-5.html"><a href="lesson-5.html#avaliar-a-homocedasticidade-das-variaveis"><i class="fa fa-check"></i><b>4.5</b> avaliar a Homocedasticidade das variáveis</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="lesson-6.html"><a href="lesson-6.html"><i class="fa fa-check"></i><b>5</b> Lesson 6</a><ul>
+<li class="chapter" data-level="5.1" data-path="lesson-6.html"><a href="lesson-6.html#avaliar-a-homocedasticidade-das-variaveis-1"><i class="fa fa-check"></i><b>5.1</b> avaliar a Homocedasticidade das variáveis</a></li>
+<li class="chapter" data-level="5.2" data-path="lesson-6.html"><a href="lesson-6.html#contrast-matrix"><i class="fa fa-check"></i><b>5.2</b> Contrast Matrix</a></li>
+<li class="chapter" data-level="5.3" data-path="lesson-6.html"><a href="lesson-6.html#discriminant-analysis"><i class="fa fa-check"></i><b>5.3</b> Discriminant Analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="lesson-7.html"><a href="lesson-7.html"><i class="fa fa-check"></i><b>6</b> Lesson 7</a><ul>
+<li class="chapter" data-level="6.1" data-path="lesson-7.html"><a href="lesson-7.html#analise-de-discriminantes"><i class="fa fa-check"></i><b>6.1</b> Análise de Discriminantes</a></li>
+<li class="chapter" data-level="6.2" data-path="lesson-7.html"><a href="lesson-7.html#pca"><i class="fa fa-check"></i><b>6.2</b> PCA</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="lesson-8.html"><a href="lesson-8.html"><i class="fa fa-check"></i><b>7</b> Lesson 8</a><ul>
+<li class="chapter" data-level="7.0.1" data-path="lesson-8.html"><a href="lesson-8.html#aplying-the-maunchly-test-sphericity-test"><i class="fa fa-check"></i><b>7.0.1</b> Aplying the Maunchly Test / Sphericity Test</a></li>
+<li class="chapter" data-level="7.0.2" data-path="lesson-8.html"><a href="lesson-8.html#now-automated-with-r-code"><i class="fa fa-check"></i><b>7.0.2</b> Now automated with R code</a></li>
+<li class="chapter" data-level="7.1" data-path="lesson-8.html"><a href="lesson-8.html#interpreting-principal-components"><i class="fa fa-check"></i><b>7.1</b> Interpreting Principal Components</a></li>
+<li class="chapter" data-level="7.2" data-path="lesson-8.html"><a href="lesson-8.html#exercise"><i class="fa fa-check"></i><b>7.2</b> Exercise</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="lesson-8.html"><a href="lesson-8.html#which-pc-do-i-choose-what-is-the-percentage-of-variability-explained-by-each-pc"><i class="fa fa-check"></i><b>7.2.1</b> Which PC do I choose? What is the percentage of variability explained by each PC?</a></li>
+<li class="chapter" data-level="7.2.2" data-path="lesson-8.html"><a href="lesson-8.html#how-to-interpret-the-principal-component"><i class="fa fa-check"></i><b>7.2.2</b> How to interpret the Principal Component?</a></li>
+<li class="chapter" data-level="7.2.3" data-path="lesson-8.html"><a href="lesson-8.html#suitability-analysis"><i class="fa fa-check"></i><b>7.2.3</b> Suitability analysis</a></li>
+<li class="chapter" data-level="7.2.4" data-path="lesson-8.html"><a href="lesson-8.html#calculate-scores"><i class="fa fa-check"></i><b>7.2.4</b> Calculate scores</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="studies-experiments.html"><a href="studies-experiments.html"><i class="fa fa-check"></i><b>8</b> Studies &amp; Experiments</a><ul>
+<li class="chapter" data-level="8.1" data-path="studies-experiments.html"><a href="studies-experiments.html#matrixes-span-and-determinantes"><i class="fa fa-check"></i><b>8.1</b> Matrixes’ Span and Determinantes</a><ul>
+<li class="chapter" data-level="8.1.1" data-path="studies-experiments.html"><a href="studies-experiments.html#more-that-3d"><i class="fa fa-check"></i><b>8.1.1</b> More that 3D</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="studies-experiments.html"><a href="studies-experiments.html#eigenvalues-and-eigenvectors"><i class="fa fa-check"></i><b>8.2</b> EigenValues and EigenVectors</a><ul>
+<li class="chapter" data-level="8.2.1" data-path="studies-experiments.html"><a href="studies-experiments.html#eigen-values"><i class="fa fa-check"></i><b>8.2.1</b> Eigen Values</a></li>
+<li class="chapter" data-level="8.2.2" data-path="studies-experiments.html"><a href="studies-experiments.html#eigen-vectores"><i class="fa fa-check"></i><b>8.2.2</b> Eigen Vectores</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="studies-experiments.html"><a href="studies-experiments.html#spectral-decomposition"><i class="fa fa-check"></i><b>8.3</b> Spectral Decomposition</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="exercises-1.html"><a href="exercises-1.html"><i class="fa fa-check"></i><b>9</b> Exercises</a></li>
+<li class="chapter" data-level="10" data-path="exercise-1.html"><a href="exercise-1.html"><i class="fa fa-check"></i><b>10</b> Exercise</a><ul>
+<li class="chapter" data-level="10.1" data-path="exercise-1.html"><a href="exercise-1.html#exercise-1---linear-algebra"><i class="fa fa-check"></i><b>10.1</b> Exercise 1 - Linear Algebra</a><ul>
+<li class="chapter" data-level="10.1.1" data-path="exercise-1.html"><a href="exercise-1.html#ex-1"><i class="fa fa-check"></i><b>10.1.1</b> Ex 1</a></li>
+<li class="chapter" data-level="10.1.2" data-path="exercise-1.html"><a href="exercise-1.html#ex-2"><i class="fa fa-check"></i><b>10.1.2</b> Ex 2</a></li>
+<li class="chapter" data-level="10.1.3" data-path="exercise-1.html"><a href="exercise-1.html#ex-3"><i class="fa fa-check"></i><b>10.1.3</b> Ex 3</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="exercise-1.html"><a href="exercise-1.html#section-1"><i class="fa fa-check"></i><b>10.2</b> </a></li>
+<li class="chapter" data-level="10.3" data-path="exercise-1.html"><a href="exercise-1.html#section-2"><i class="fa fa-check"></i><b>10.3</b> 11</a></li>
+<li class="chapter" data-level="10.4" data-path="exercise-1.html"><a href="exercise-1.html#section-3"><i class="fa fa-check"></i><b>10.4</b> 12</a></li>
+<li class="chapter" data-level="10.5" data-path="exercise-1.html"><a href="exercise-1.html#section-4"><i class="fa fa-check"></i><b>10.5</b> 13</a></li>
+<li class="chapter" data-level="10.6" data-path="exercise-1.html"><a href="exercise-1.html#section-5"><i class="fa fa-check"></i><b>10.6</b> 14</a></li>
+<li class="chapter" data-level="10.7" data-path="exercise-1.html"><a href="exercise-1.html#section-6"><i class="fa fa-check"></i><b>10.7</b> 15</a></li>
+<li class="chapter" data-level="10.8" data-path="exercise-1.html"><a href="exercise-1.html#section-7"><i class="fa fa-check"></i><b>10.8</b> 16</a></li>
+<li class="chapter" data-level="10.9" data-path="exercise-1.html"><a href="exercise-1.html#section-8"><i class="fa fa-check"></i><b>10.9</b> 17</a></li>
+<li class="chapter" data-level="10.10" data-path="exercise-1.html"><a href="exercise-1.html#section-9"><i class="fa fa-check"></i><b>10.10</b> 18</a></li>
+<li class="chapter" data-level="10.11" data-path="exercise-1.html"><a href="exercise-1.html#section-10"><i class="fa fa-check"></i><b>10.11</b> 19</a></li>
+<li class="chapter" data-level="10.12" data-path="exercise-1.html"><a href="exercise-1.html#section-11"><i class="fa fa-check"></i><b>10.12</b> 24</a></li>
+<li class="chapter" data-level="10.13" data-path="exercise-1.html"><a href="exercise-1.html#section-12"><i class="fa fa-check"></i><b>10.13</b> 25</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Multivariate Stats</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="lesson-5" class="section level1">
+<h1><span class="header-section-number">4</span> Lesson 5</h1>
+<div id="anova" class="section level2">
+<h2><span class="header-section-number">4.1</span> ANOVA</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">X &lt;-<span class="st"> </span><span class="kw">t</span>(<span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">9</span>,<span class="dv">6</span>,<span class="dv">9</span>,<span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">2</span>,<span class="dv">7</span>,<span class="dv">4</span>,<span class="dv">0</span>,<span class="dv">8</span>,<span class="dv">9</span>,<span class="dv">7</span>),<span class="dv">2</span>,<span class="dt">byrow=</span>T))
+
+S &lt;-<span class="st"> </span><span class="kw">var</span>(X)
+TotalMatrix &lt;-<span class="st"> </span>(<span class="kw">dim</span>(X)[<span class="dv">1</span>]<span class="op">-</span><span class="dv">1</span>)<span class="op">*</span>S
+
+<span class="co">#samples extrated from population 1</span>
+n1 &lt;-<span class="st"> </span><span class="dv">3</span>
+S1 &lt;-<span class="st"> </span><span class="kw">var</span>(X[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>,])
+<span class="co">#samples extrated from population 2</span>
+n2 &lt;-<span class="st"> </span><span class="dv">2</span>
+S2 &lt;-<span class="st"> </span><span class="kw">var</span>(X[<span class="dv">4</span><span class="op">:</span><span class="dv">5</span>,])
+<span class="co">#samples extrated from population 3</span>
+n3 &lt;-<span class="st"> </span><span class="dv">3</span> 
+S3 &lt;-<span class="st"> </span><span class="kw">var</span>(X[<span class="dv">6</span><span class="op">:</span><span class="dv">8</span>,])
+
+<span class="co"># Commum Covariance Matrix that we need to apply ANOVA</span>
+W =<span class="st"> </span>(n1<span class="op">-</span><span class="dv">1</span>)<span class="op">*</span>S1 <span class="op">+</span><span class="st"> </span>(n2<span class="op">-</span><span class="dv">1</span>)<span class="op">*</span>S2 <span class="op">+</span><span class="st"> </span>(n3<span class="op">-</span><span class="dv">1</span>)<span class="op">*</span>S3
+
+B &lt;-<span class="st"> </span>TotalMatrix <span class="op">-</span><span class="st"> </span>W
+
+<span class="co"># observed test statistics</span>
+tObs &lt;-<span class="st"> </span><span class="kw">det</span>(W)<span class="op">/</span><span class="kw">det</span>(TotalMatrix)
+
+<span class="co">#alternativamente, posso calcular</span>
+eigenValues &lt;-<span class="st"> </span><span class="kw">eigen</span>(B<span class="op">%*%</span><span class="kw">solve</span>(W))<span class="op">$</span>values
+tObs.alternative &lt;-<span class="st"> </span><span class="kw">prod</span>(<span class="dv">1</span><span class="op">/</span>(<span class="dv">1</span><span class="op">+</span>eigenValues))
+
+<span class="co"># Transform the last value (that has an unkown distribution) to an F distribution through the following transform: (aka F approximation)</span>
+
+tObs.F &lt;-<span class="st"> </span>(((<span class="kw">dim</span>(X)[<span class="dv">1</span>]<span class="op">-</span><span class="kw">dim</span>(X)[<span class="dv">2</span>]<span class="op">-</span><span class="dv">2</span>)<span class="op">/</span><span class="kw">dim</span>(X)[<span class="dv">2</span>])) <span class="op">*</span><span class="st"> </span>((<span class="dv">1</span><span class="op">-</span><span class="kw">sqrt</span>(tObs.alternative))<span class="op">/</span>(<span class="kw">sqrt</span>(tObs.alternative)))</code></pre></div>
+<p>g = 3 (groups number) p = 2 (dimensions number)</p>
+<p>$$</p>
+<p>F_{2<em>p, 2</em>(n-p-2)}</p>
+<p>$$</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">significanceLevel &lt;-<span class="st"> </span><span class="fl">0.01</span>
+
+criticRegion &lt;-<span class="st"> </span><span class="kw">qf</span>(<span class="dv">1</span><span class="op">-</span>significanceLevel, <span class="dv">2</span><span class="op">*</span><span class="kw">dim</span>(X)[<span class="dv">2</span>], <span class="dv">2</span><span class="op">*</span>(<span class="kw">dim</span>(X)[<span class="dv">1</span>]<span class="op">-</span><span class="kw">dim</span>(X)[<span class="dv">2</span>]<span class="op">-</span><span class="dv">2</span>))
+
+p_value &lt;-<span class="st"> </span>(<span class="dv">1</span><span class="op">-</span><span class="kw">pf</span>(tObs.F,<span class="dv">4</span>,<span class="dv">8</span>))</code></pre></div>
+<p>Ambas são verdadeiras (uma implica a outra) - Rejeita-se porque p-value &lt;= 0.01 - Rejeita-se porque tObs transformado em F é &gt;= <code>criticRegion</code></p>
+<p>Agora nós rejeitamos mas não sabemos porquê: - foi porque todas as dimensões são diferentes? (dimensões ou grupos?) - ou são porque uma é diferente?</p>
+<p>Para tal, vamos analizar os intervalos de confiança</p>
+</div>
+<div id="adding-the-samples-column" class="section level2">
+<h2><span class="header-section-number">4.2</span> Adding the Samples column</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">grupo &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="kw">rep</span>(<span class="dv">1</span>,<span class="dv">3</span>),<span class="kw">rep</span>(<span class="dv">2</span>,<span class="dv">2</span>),<span class="kw">rep</span>(<span class="dv">3</span>,<span class="dv">3</span>))
+Xg &lt;-<span class="st"> </span><span class="kw">cbind</span>(grupo, X)</code></pre></div>
+</div>
+<div id="exercicio-2" class="section level2">
+<h2><span class="header-section-number">4.3</span> Exercicio 2</h2>
+<p>Intervalos de Confiança a 99%</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">m &lt;-<span class="st"> </span><span class="kw">aggregate</span>(Xg[,<span class="op">-</span><span class="dv">1</span>],<span class="dt">by=</span><span class="kw">list</span>(<span class="dt">G =</span> Xg[,<span class="dv">1</span>]), <span class="dt">FUN=</span>mean)
+
+g &lt;-<span class="st"> </span><span class="kw">length</span>(<span class="kw">unique</span>(Xg[,<span class="dv">1</span>]))
+
+w1 &lt;-<span class="st"> </span>W[<span class="dv">1</span>,<span class="dv">1</span>]
+w2 &lt;-<span class="st"> </span>W[<span class="dv">2</span>,<span class="dv">2</span>]
+
+<span class="co">#numero de comparações</span>
+<span class="co">#m &lt;- 2*(g*(g-1))/2</span>
+
+alpha &lt;-<span class="st"> </span><span class="fl">0.01</span>
+
+t&lt;-<span class="kw">qt</span>(alpha,<span class="dt">p =</span> <span class="dv">1</span><span class="op">-</span>(alpha<span class="op">*</span><span class="st"> </span><span class="kw">dim</span>(X)[<span class="dv">1</span>])<span class="op">/</span><span class="dv">2</span>, <span class="dt">df =</span> <span class="kw">dim</span>(X)[<span class="dv">1</span>]<span class="op">-</span>g)
+
+<span class="kw">colnames</span>(m) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;G&quot;</span>,<span class="st">&quot;x1&quot;</span>,<span class="st">&quot;x2&quot;</span>)
+
+varsComp &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;x1&quot;</span>,<span class="st">&quot;x2&quot;</span>)
+groups &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>),<span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">3</span>),<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">3</span>))
+
+comparisonList &lt;-<span class="st"> </span><span class="kw">list</span>()
+
+<span class="cf">for</span>(currVar <span class="cf">in</span> varsComp){
+  <span class="cf">for</span>(group <span class="cf">in</span> groups){
+    res &lt;-<span class="st"> </span>(m[group[<span class="dv">1</span>],currVar]<span class="op">-</span>m[group[<span class="dv">2</span>],currVar])<span class="op">-</span>t<span class="op">*</span><span class="kw">sqrt</span>( w1<span class="op">/</span>(<span class="kw">dim</span>(X)[<span class="dv">1</span>]<span class="op">-</span>g)<span class="op">*</span>(<span class="dv">1</span><span class="op">/</span>n1 <span class="op">+</span><span class="st"> </span><span class="dv">1</span><span class="op">/</span>n2) )
+    comparisonList[<span class="kw">length</span>(comparisonList)<span class="op">+</span><span class="dv">1</span>] =<span class="st"> </span><span class="kw">list</span>(<span class="dt">var =</span> currVar, <span class="dt">cmp =</span> group, <span class="dt">res=</span>res)
+  }
+}</code></pre></div>
+<pre><code>## Warning in comparisonList[length(comparisonList) + 1] &lt;- list(var =
+## currVar, : number of items to replace is not a multiple of replacement
+## length
+
+## Warning in comparisonList[length(comparisonList) + 1] &lt;- list(var =
+## currVar, : number of items to replace is not a multiple of replacement
+## length
+
+## Warning in comparisonList[length(comparisonList) + 1] &lt;- list(var =
+## currVar, : number of items to replace is not a multiple of replacement
+## length
+
+## Warning in comparisonList[length(comparisonList) + 1] &lt;- list(var =
+## currVar, : number of items to replace is not a multiple of replacement
+## length
+
+## Warning in comparisonList[length(comparisonList) + 1] &lt;- list(var =
+## currVar, : number of items to replace is not a multiple of replacement
+## length
+
+## Warning in comparisonList[length(comparisonList) + 1] &lt;- list(var =
+## currVar, : number of items to replace is not a multiple of replacement
+## length</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(m[<span class="dv">1</span>,<span class="st">&quot;x1&quot;</span>]<span class="op">-</span>m[<span class="dv">2</span>,<span class="st">&quot;x1&quot;</span>])<span class="op">-</span>t<span class="op">*</span><span class="kw">sqrt</span>( w1<span class="op">/</span>(<span class="kw">dim</span>(X)[<span class="dv">1</span>]<span class="op">-</span>g)<span class="op">*</span>(<span class="dv">1</span><span class="op">/</span>n1 <span class="op">+</span><span class="st"> </span><span class="dv">1</span><span class="op">/</span>n2) )</code></pre></div>
+<pre><code>## [1] 4.152474</code></pre>
+</div>
+<div id="manova" class="section level2">
+<h2><span class="header-section-number">4.4</span> Manova</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dados5 &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(readxl<span class="op">::</span><span class="kw">read_xlsx</span>(<span class="kw">file.path</span>(datasetsDir, <span class="st">&quot;data5.xlsx&quot;</span>)))
+dados5<span class="op">$</span>fator1 &lt;-<span class="st"> </span><span class="kw">as.factor</span>(dados5<span class="op">$</span>fator1)
+dados5<span class="op">$</span>fator2 &lt;-<span class="st"> </span><span class="kw">as.factor</span>(dados5<span class="op">$</span>fator2)
+
+<span class="co">#m &lt;- manova(cbind(x1,x2,x3)*fator1*fator2, data=dados5)</span>
+
+<span class="co">#summary(m, test = &quot;Wilks&quot;)</span>
+
+
+<span class="co">#m1 &lt;- aov(x1*as.factor(fator1)*as.factor(fator2),data=dados5)</span>
+<span class="co">#summary(m1)</span>
+
+
+<span class="co">#m2 &lt;- aov(x2*as.factor(fator1)*as.factor(fator2),data=dados5)</span>
+<span class="co">#summary(m2)</span>
+
+
+<span class="co">#m3 &lt;- aov(x3*as.factor(fator1)*as.factor(fator2),data=dados5)</span>
+<span class="co">#summary(m3)</span></code></pre></div>
+</div>
+<div id="avaliar-a-homocedasticidade-das-variaveis" class="section level2">
+<h2><span class="header-section-number">4.5</span> avaliar a Homocedasticidade das variáveis</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dados7 &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(readxl<span class="op">::</span><span class="kw">read_xlsx</span>(<span class="kw">file.path</span>(datasetsDir, <span class="st">&quot;data7.xlsx&quot;</span>), <span class="dt">col_names =</span> F))
+
+<span class="kw">colnames</span>(dados7) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;G&quot;</span>,<span class="st">&quot;X1&quot;</span>,<span class="st">&quot;X2&quot;</span>,<span class="st">&quot;X3&quot;</span>,<span class="st">&quot;X4&quot;</span>)
+
+S1 &lt;-<span class="st"> </span><span class="kw">var</span>(dados7[dados7<span class="op">$</span>G <span class="op">==</span><span class="st"> </span><span class="dv">1</span>,<span class="op">-</span><span class="dv">1</span>])
+S2 &lt;-<span class="st"> </span><span class="kw">var</span>(dados7[dados7<span class="op">$</span>G <span class="op">==</span><span class="st"> </span><span class="dv">2</span>,<span class="op">-</span><span class="dv">1</span>])
+
+n1 &lt;-<span class="st"> </span><span class="kw">sum</span>(dados7<span class="op">$</span>G<span class="op">==</span><span class="dv">1</span>)
+n2 &lt;-<span class="st"> </span><span class="kw">sum</span>(dados7<span class="op">$</span>G<span class="op">==</span><span class="dv">2</span>)
+
+<span class="co">#k is the number of groups</span>
+Spooled &lt;-<span class="st"> </span>((n1<span class="op">-</span><span class="dv">1</span>)<span class="op">*</span>S1<span class="op">+</span>(n2<span class="op">-</span><span class="dv">1</span>)<span class="op">*</span>S2)<span class="op">/</span>(n1<span class="op">+</span>n2<span class="op">-</span><span class="dv">2</span>)
+
+num &lt;-<span class="st"> </span><span class="kw">det</span>(S1)<span class="op">^</span>((n1<span class="op">-</span><span class="dv">1</span>)<span class="op">/</span><span class="dv">2</span>) <span class="op">*</span><span class="st"> </span><span class="kw">det</span>(S2)<span class="op">^</span>((n2<span class="op">-</span><span class="dv">1</span>)<span class="op">/</span><span class="dv">2</span>)
+
+den &lt;-<span class="st"> </span><span class="kw">det</span>(Spooled)<span class="op">^</span>((n1<span class="op">+</span>n2<span class="op">-</span><span class="dv">2</span>)<span class="op">/</span><span class="dv">2</span>)
+
+lambda &lt;-<span class="st"> </span>num<span class="op">/</span>den
+
+p &lt;-<span class="st"> </span><span class="kw">dim</span>(dados7[,<span class="op">-</span><span class="dv">1</span>])[<span class="dv">2</span>]
+g &lt;-<span class="st"> </span><span class="kw">length</span>(<span class="kw">unique</span>(dados7<span class="op">$</span>G))
+ni &lt;-<span class="st"> </span><span class="kw">c</span>(n1,n2)
+
+c1 &lt;-<span class="st"> </span>(<span class="kw">sum</span>(<span class="dv">1</span><span class="op">/</span>(ni<span class="op">-</span><span class="dv">1</span>)) <span class="op">-</span><span class="st"> </span><span class="dv">1</span><span class="op">/</span>(<span class="kw">sum</span>(ni<span class="op">-</span><span class="dv">1</span>)))<span class="op">*</span>((<span class="dv">2</span><span class="op">*</span>p<span class="op">^</span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span><span class="dv">3</span><span class="op">*</span>p <span class="op">-</span><span class="st"> </span><span class="dv">1</span>)<span class="op">/</span>(<span class="dv">6</span><span class="op">*</span>(p<span class="op">+</span><span class="dv">1</span>)<span class="op">*</span>(g<span class="op">-</span><span class="dv">1</span>)))
+
+Ustar &lt;-<span class="st"> </span><span class="op">-</span><span class="dv">2</span><span class="op">*</span>(<span class="dv">1</span><span class="op">-</span>c1)<span class="op">*</span><span class="kw">log</span>(lambda)</code></pre></div>
+<p>We know that the transformation <span class="math inline">\(-2(1 - c1)ln\Lambda\)</span> follows a <span class="math inline">\(\chi^2_{(g-1)(p+1)}\)</span></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">qchisq</span>(<span class="fl">0.95</span>, g<span class="op">-</span><span class="dv">1</span>, p<span class="op">+</span><span class="dv">1</span>)</code></pre></div>
+<pre><code>## [1] 15.06155</code></pre>
+<p>Therefore we do not reject H0.</p>
+<p>All automated now!</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#biotools::boxM(data= dados7[,-1], grouping = dados7$G)</span></code></pre></div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="lesson-4.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="lesson-6.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
