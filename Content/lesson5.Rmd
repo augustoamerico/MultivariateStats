@@ -51,8 +51,8 @@ tObs.F <- (((dim(X)[1]-dim(X)[2]-2)/dim(X)[2])) * ((1-sqrt(tObs.alternative))/(s
 ```
 
 
-g = 3 (número de grupos)
-p = 2 (número de dimensões)
+g = 3 (groups number)
+p = 2 (dimensions number)
 
 $$
 
@@ -65,7 +65,7 @@ significanceLevel <- 0.01
 
 criticRegion <- qf(1-significanceLevel, 2*dim(X)[2], 2*(dim(X)[1]-dim(X)[2]-2))
 
-p-value <- 1-pf(tObs.F,4,8)
+p_value <- (1-pf(tObs.F,4,8))
 
 
 ```
@@ -77,7 +77,7 @@ Ambas são verdadeiras (uma implica a outra)
 
 Agora nós rejeitamos mas não sabemos porquê:
  - foi porque todas as dimensões são diferentes? (dimensões ou grupos?)
- - ou só porque uma é diferente?
+ - ou são porque uma é diferente?
 
 Para tal, vamos analizar os intervalos de confiança 
 
@@ -104,7 +104,7 @@ w1 <- W[1,1]
 w2 <- W[2,2]
 
 #numero de comparações
-m <- 2*(g*(g-1))/2
+#m <- 2*(g*(g-1))/2
 
 alpha <- 0.01
 
@@ -140,21 +140,21 @@ dados5 <- as.data.frame(readxl::read_xlsx(file.path(datasetsDir, "data5.xlsx")))
 dados5$fator1 <- as.factor(dados5$fator1)
 dados5$fator2 <- as.factor(dados5$fator2)
 
-m <- manova(cbind(x1,x2,x3)*fator1*fator2, data=dados5)
+#m <- manova(cbind(x1,x2,x3)*fator1*fator2, data=dados5)
 
-summary(m, test = "Wilks")
-
-
-m1 <- aov(x1*as.factor(fator1)*as.factor(fator2),data=dados5)
-summary(m1)
+#summary(m, test = "Wilks")
 
 
-m2 <- aov(x2*as.factor(fator1)*as.factor(fator2),data=dados5)
-summary(m2)
+#m1 <- aov(x1*as.factor(fator1)*as.factor(fator2),data=dados5)
+#summary(m1)
 
 
-m3 <- aov(x3*as.factor(fator1)*as.factor(fator2),data=dados5)
-summary(m3)
+#m2 <- aov(x2*as.factor(fator1)*as.factor(fator2),data=dados5)
+#summary(m2)
+
+
+#m3 <- aov(x3*as.factor(fator1)*as.factor(fator2),data=dados5)
+#summary(m3)
 
 
 
@@ -205,5 +205,5 @@ Therefore we do not reject H0.
 
 All automated now!
 ```{r}
-biotools::boxM(data= dados7[,-1], grouping = dados7$G)
+#biotools::boxM(data= dados7[,-1], grouping = dados7$G)
 ```

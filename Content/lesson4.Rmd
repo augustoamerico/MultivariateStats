@@ -41,11 +41,6 @@ alpha = 0.05
 
 4*qf(1-alpha,2,1)
 
-
-
-
-
-
 ```
 
 ## Slide 10 exercise
@@ -62,7 +57,7 @@ x2 <- dados3[,2]^(1/4)
 hypothesis <- c(0.562,0.589)
 
 
-  x1<-dados3[,1]^(1/4)
+x1<-dados3[,1]^(1/4)
 x2<-dados3[,2]^(1/4)
 x<-matrix(c(x1,x2),42,2)
 m<-colMeans(x)
@@ -81,8 +76,8 @@ eigenS <- eigen(s)
 eval <- eigenS$values
 evec <- eigenS$vectors
 
-#vc is valor crítico
-m - sqrt(eval[1])*sqrt(valorCritico)*evec[,1]
+#vc is valor cr??tico
+m - sqrt(eval[1])*sqrt(vc)*evec[,1]
 
   
 ```

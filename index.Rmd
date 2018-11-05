@@ -21,6 +21,18 @@ fig_basePath = "Figures/"
 ```{r child="Content/lesson3.Rmd"}
 ```
 
+```{r child="Content/lesson4.Rmd"}
+```
+
+```{r child="Content/lesson5.Rmd"}
+```
+
+```{r child="Content/lesson6.Rmd"}
+```
+
+```{r child="Content/lesson7.Rmd"}
+```
+
 
 # Studies \& Experiments
 ```{r child="Content/Study_2.Rmd"}

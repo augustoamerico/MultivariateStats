@@ -1,0 +1,252 @@
+---
+title: "Computational Stats"
+site: bookdown::bookdown_site
+---
+
+```{r include = FALSE}
+PROJHOME <- "/Users/tiago.correia/courses/MestradoBigData/EstatisticaMultivariada"
+datasetsDir=file.path(PROJHOME,"datasets")
+```
+
+
+# Lesson 7
+
+## Análise de Discriminantes
+
+```{r}
+c1 <- c(-2,0,-1,0,2,1,1,0,-1)
+c2 <- c(5,3,1,6,4,2,-2,0,-4)
+groups <- c(1,2,3)
+G <- rep(groups,each=3)
+X <- data.frame(cbind(G,c1,c2))
+n <- dim(X)[1]
+p <- dim(X)[2]-1
+g <- length(groups)
+
+alpha <- 0.05
+
+S <- var(X[,-1])
+Slist <- lapply(groups, function(group){
+  var(X[X$G==group,-1])
+})
+
+nlist <- lapply(groups, function(group){
+  dim(X[X$G==group,-1])[1]
+})
+
+
+
+T <- (n-1)*S
+
+W <- matrix(rep(0,p*p),2)
+for(i in 1:length(nlist)){
+  W = W + (nlist[[i]]-1)*Slist[[i]]
+}
+
+Spooled <- W/(sum(unlist(nlist))-length(nlist))
+
+B <- T - W
+
+eigenDisc <- eigen(solve(W)%*%B)
+
+
+```
+
+Now we need to understand if the second eigen value is significantly different from 0, and that depends on the variability of the distribution.
+
+For this, we will use the Wilk's lambda test stats:
+
+$$
+ - \left(n-1-\frac{p+g}{2}\right) ln \Lambda^* \approx \chi^2_{p(g-1)}
+$$
+
+And now we want to test $H_0 : \lambda_i = 0(i = 1,...,s)$, where $s$ is the number of non-null eigen values.
+We need to test if each eigen value is significantly different than 0.
+
+
+Therefore, for the m-esime test we have:
+
+$$
+ \Lambda^{*}_{m} = \Pi^{s}_{i=m} \frac{1}{1+l_i}
+$$
+
+```{r}
+
+nEigen <- length(eigenDisc$values)
+
+Lw <- sapply(1:nEigen,function(idx){
+  prod(1/(1+eigenDisc$values[idx:nEigen]))
+})
+
+#Critic Values
+CVs <- sapply(1:nEigen,function(idx){
+  qchisq(0.95,(p-idx+1)*(g-idx))
+})
+
+
+#\left(n-1-\frac{p+g}{2}\right) ln \Lambda^* \approx \chi^2_{p(g-1)}
+
+LwChisqr <- sapply(Lw,function(currLw){
+  -(n-1-((p+g)/2))*log(currLw)
+})
+
+Lw > CVs
+```
+
+Do we reject any test (for critic regions)?
+
+1. First eigen (`r Lw[1]`) VS critic region (`r CVs[1]`): `r (Lw > CVs)[1]`
+2. Second eigen (`r Lw[2]`) VS critic region (`r CVs[2]`): `r (Lw > CVs)[2]`
+
+```{r}
+pValues <- sapply(1:nEigen,function(idx){
+  1-pchisq(Lw[idx],(p-idx+1)*(g-idx))
+})
+
+pValues < alpha
+
+```
+
+Do we reject any test (for p values)?
+
+1. First eigen (`r pValues[1]`) VS critic region (`r alpha`): `r (pValues < alpha)[1]`
+2. Second eigen (`r pValues[2]`) VS critic region (`r alpha`): `r (pValues < alpha)[2]`
+
+```{r}
+
+m <- aggregate(X[,2:3],list(X[,1]),mean)
+
+classifications <- apply(X,1,function(obs){
+  print(obs)
+  obs <- unlist(c(unname(obs[c(2,3)])))
+  centered <- obs - as.matrix(m[,-1])
+  dists <- diag(centered%*%solve(Spooled)%*%t(centered))
+  return(which.min(dists))
+})
+
+```
+
+## PCA
+
+```{r}
+
+dados8 <- as.data.frame(readxl::read_xlsx(file.path(datasetsDir, "data8.xlsx")))
+dados8.scaled <- scale(dados8, center=TRUE,scale=TRUE)
+S <- var(dados8.scaled)
+
+round(S,3)
+
+dados8.eigen <- eigen(S)
+
+eigenAnalysis = data.frame(
+  CP=1:length(dados8.eigen$values),
+  EV= round(dados8.eigen$values,3),
+  Prop_var = round(dados8.eigen$values / length(dados8.eigen$values),3),
+  Prop_cum = round(cumsum(dados8.eigen$values / length(dados8.eigen$values)),3)
+)
+
+knitr::kable(eigenAnalysis)
+
+plotly::subplot(
+  plotly::plot_ly(
+    eigenAnalysis, x=~CP, y=~EV, type="scatter", mode="lines+markers", name="Scree Plot"
+  ),
+  plotly::plot_ly(
+    eigenAnalysis, x=~CP, y=~Prop_cum, type="scatter", mode="lines+markers", name="Cum Importance"
+  )
+)
+
+```
+
+# Lesson 8 
+
+```{r}
+dados8 <- as.data.frame(readxl::read_xlsx(file.path(datasetsDir, "data8.xlsx")))
+footpca<-prcomp(x = dados8,scale. = TRUE)
+summary(footpca)
+
+attributes(footpca)
+
+round(footpca$rotation,3)
+
+screeplot(footpca,type = "l",main="Scree plot")
+
+
+cbinded_data_pcs <- crosstalk::SharedData$new(cbind.data.frame(as.data.frame(dados8.scaled), as.data.frame(footpca$x)))
+
+crosstalk::bscols(
+  d3scatter::d3scatter(cbinded_data_pcs, ~WDIM, ~CIRCUM, color = "blue",width="100%", height=300),
+  d3scatter::d3scatter(cbinded_data_pcs, ~PC1, ~PC2, color = "green",width="100%", height=300)
+)
+
+```
+
+```{r}
+dados8.scaled.df <- as.data.frame(dados8.scaled)
+
+S <- cov(dados8.scaled.df)
+
+S>=0.5 # we have (p^2 - p)/2 distinct correlations, and just 3 of them are >= 0.5
+
+pcor <- corpcor::cor2pcor(S) # this is the parcial correlation between variables excluding the influence of all the others
+# the values must be interpreted as the percentage of variability left explained by removing the influence of all the other variables
+```
+
+### Aplying the Maunchly Test / Sphericity Test
+
+
+- We assume that the vector is normal multivariate
+- the test stats is 
+$$
+  U^* = -\left(n-1-\frac{2p^2 + p + 2}{6p}\right)ln(U)
+$$
+$$
+  U = \Lambda^{2/n}
+$$
+$$
+  \Lambda = \frac{|S|^{n/2}}{(tr(S)/p)^{np/2}}
+$$
+
+And therefore:
+
+$$
+  U = \frac{p^p|S|}{(tr(S))^p}
+$$
+
+```{r}
+S.det <- det(S)
+S.tr <- psych::tr(S)
+p <- dim(S)[2]
+n <- dim(dados8)[1]
+
+U = ((p^p)*S.det) / (S.tr^p)
+
+Lambda <- (S.det^(n/2)) / ((S.tr/p)^(n*p/2))
+Lambda^(2/n)
+
+Ustar <- -(n - 1 - (2*p^2 + p + 2)/(6*p))*log(U)
+
+## Chi sqrt degrees of freedom
+chisqrt.degreesfreedom <- (p*(p+1))/2-1
+
+```
+
+
+What's the probability of U* to be greather than `r round(Ustar,3)`?
+
+P(U* > `r round(Ustar,3)`)
+
+```{r}
+1 - pchisq(Ustar, chisqrt.degreesfreedom)
+
+```
+
+And therefore we reject H0. 
+This means that there is at least one correlation that is significantly differente than 0.
+
+### Now automated with R code
+
+```{r}
+mauchly.test(lm(dados8.scaled~1))
+```
+

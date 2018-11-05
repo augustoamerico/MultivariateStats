@@ -65,7 +65,7 @@ par(mfrow=c(1,1))
 ```
 
 
-### Estatísticas Ordinais
+### Estat??sticas Ordinais
 
 #### Minimum
 
@@ -75,7 +75,7 @@ $$ x_\left(1\right) = x_\left(1n\right) $$
 
 $$ x_\left(n\right) = x_\left(nn\right) $$ 
 
-#### Inverso da função distribuição Gaussiana
+#### Inverso da fun????o distribui????o Gaussiana
 
 ```{r}
 
@@ -124,7 +124,7 @@ par(mfrow=c(1,1),defaultMar)
 ```
 
 
-### Transforming to Distance (slide 21)
+### Transforming to Distance (slide 27)
 
 
 ```{r}
@@ -146,7 +146,7 @@ for(i in 1:nrow(X)){
   d2[i] <- (t(X[i,]) - colMeans(X))%*%solve(var(X))%*%(X[i,]-colMeans(X))
 }
 
-## o u é que tem distribuição beta
+## o u ?? que tem distribui????o beta
 
 ## quantis teoriocos qui-quadrado
 qi_chi <- round(qchisq(xdf$empProb, ncol(X)),3)
